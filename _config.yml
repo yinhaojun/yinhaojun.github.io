@@ -73,11 +73,11 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: landscape
+theme: next
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy: 
   type: git
-  repo: ssh://git@47.93.29.206:yhj_publish_blog.git
+  repo: git@47.93.29.206:yhj_publish_blog.git
   branch: master
