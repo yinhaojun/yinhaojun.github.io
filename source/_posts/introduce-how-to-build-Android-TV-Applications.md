@@ -17,9 +17,11 @@ tags:
 
 但是不管咋样，自己毕竟是做TV开发的，Leanback还是要掌握的，从今天起开始给给大家来个如何利用Leanback开发TV应用的系列教程，希望大家喜欢！
 
+<!-- more -->
+
 # 正题
 
-UI是手机应用和TV应用最大的不同之一，我们开发适合TV上使用的应用，比如我们是通过遥控器远程操控的，而不是通过屏幕触摸。为了实现这些要求，Android开源项目Leanback应运而生，它能够让开发者很轻松的开发满足TV开发的各种要求的应用。
+UI及操作是手机应用和TV应用最大的不同之一，比如我们是通过遥控器远程操控的，而不是通过屏幕触摸。为了实现这些要求，Android开源项目Leanback应运而生，它能够让开发者很轻松的开发满足TV开发的各种要求的应用。
 
 谁适合阅读这篇文章：
 
@@ -32,7 +34,7 @@ UI是手机应用和TV应用最大的不同之一，我们开发适合TV上使�
 
 打开Android Studio，选择File->New->New Project新建项目，如下图：
 
-![new_projec](/Users/victor/blog/yhj_blog/source/_posts/introduce-how-to-build-Android-TV-Applications/create_project.png)
+![create_project](create_project.png)
 
 | 名称                   | 含义                   |
 | ---------------------- | ---------------------- |
@@ -45,23 +47,23 @@ UI是手机应用和TV应用最大的不同之一，我们开发适合TV上使�
 
 填入以上信息后，点击Next进入下一步。如下图：
 
-![](/Users/victor/blog/yhj_blog/source/_posts/introduce-how-to-build-Android-TV-Applications/target_android_devices.png)
+![target_android_devices](target_android_devices.png)
 
 默认是选中“Phone and Tablet”的，因为是TV开发，所以我们选中TV就好了，然后Next，如下图：
 
-![](/Users/victor/blog/yhj_blog/source/_posts/introduce-how-to-build-Android-TV-Applications/create_default_activity.png)
+![create_default_activity](create_default_activity.png)
 
 默认是选中“Android TV Activity”的，但是如果选择这个选项的话会生成很多文件，对于初学者来说上手很难，因此我们这里选择“Add No Activity”，然后点击Finish，这样项目就新建好了。
 
 ## 创建Activity
 
-项目新建完成后，因为我们选择的是“Add No Activity”，所以我们的项目默认是没有Activity，也就是界面的。这个时候就需要我们自己添加Activity了。
+项目新建完成后，因为我们选择的是“Add No Activity”，所以我们的项目默认是没有Activity，也就是没有界面的。这个时候就需要我们自己添加Activity了。
 
 右键选中我们的包名，比如“com.example.tvdemo”，然后选择“New”->Activity->Empty Activity，选中“Launcher Activity”选项，将它作为我们应用的启动页。
 
-![](/Users/victor/blog/yhj_blog/source/_posts/introduce-how-to-build-Android-TV-Applications/empty_activity.png)
+![empty_activity.png](empty_activity.png)
 
-![](/Users/victor/blog/yhj_blog/source/_posts/introduce-how-to-build-Android-TV-Applications/create_empty_activity.png)
+![create_empty_activity.png](create_empty_activity.png)
 
 *注意：默认情况下MainActivity是继承Activity的，这里我们要改成FragmentActivity，因为等下要用到Fragment。*
 
@@ -69,7 +71,7 @@ UI是手机应用和TV应用最大的不同之一，我们开发适合TV上使�
 
 右键包名，New->Java Class->Name:MainFragment。MainFragment需要继承BrowseSupportFragment。
 
-![](/Users/victor/blog/yhj_blog/source/_posts/introduce-how-to-build-Android-TV-Applications/create_main_fragment.png)
+![create_main_fragment.png](create_main_fragment.png)
 
 现在，我们有了MAinActivity和MAinFragment，怎么将两者关联在一起呢？其实只需要我们修改activity_main文件就好了，具体如下：
 
@@ -93,7 +95,7 @@ UI是手机应用和TV应用最大的不同之一，我们开发适合TV上使�
 
 运行项目，效果如下：
 
-![](/Users/victor/blog/yhj_blog/source/_posts/introduce-how-to-build-Android-TV-Applications/first_show_result.png)
+![first_show_result.png](first_show_result.png)
 
 正如上图所展示的，BroseSupportFragment是由HeaderFragment和RowsFragment组成的，RowsFragment是左边区域，HeaderFragment是右边区域，后续我们要介绍如何设计Header和Row。
 
@@ -142,9 +144,9 @@ UI是手机应用和TV应用最大的不同之一，我们开发适合TV上使�
 
 运行看下效果吧！见下图：
 
-![](/Users/victor/blog/yhj_blog/source/_posts/introduce-how-to-build-Android-TV-Applications/second_result.png)
+![second_result.png](second_result.png)
 
-![](/Users/victor/blog/yhj_blog/source/_posts/introduce-how-to-build-Android-TV-Applications/third_result.png)
+![third_result.png](third_result.png)
 
 | 方法             | 含义     |
 | ---------------- | -------- |
@@ -178,7 +180,7 @@ UI是手机应用和TV应用最大的不同之一，我们开发适合TV上使�
 
 效果如下：
 
-![](/Users/victor/blog/yhj_blog/source/_posts/introduce-how-to-build-Android-TV-Applications/forth_result.png)
+![forth_result.png](forth_result.png)
 
 ## 修改AndroidManifest
 
@@ -231,9 +233,9 @@ UI是手机应用和TV应用最大的不同之一，我们开发适合TV上使�
 
 最终效果：
 
-![](/Users/victor/blog/yhj_blog/source/_posts/introduce-how-to-build-Android-TV-Applications/fifth_result.png)
+![fifth_result.png](fifth_result.png)
 
-![](/Users/victor/blog/yhj_blog/source/_posts/introduce-how-to-build-Android-TV-Applications/sixth_result.png)
+![sixth_result.png](sixth_result.png)
 
 今天就介绍到这里吧，都是些入门知识，后面会继续介绍leanback其他功能的使用。
 
