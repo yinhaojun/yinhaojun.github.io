@@ -1,5 +1,5 @@
 ---
-title: 利用Leanback实现安卓TV应用教程一
+title: Leanback实现TV开发教程之简介
 date: 2018-08-06 21:32:25
 tags:
 - Android
@@ -240,3 +240,5 @@ UI及操作是手机应用和TV应用最大的不同之一，比如我们是通�
 今天就介绍到这里吧，都是些入门知识，后面会继续介绍leanback其他功能的使用。
 
 **这里我有个疑问就是TvDemo的logo为什么不是铺满整个Item呢？如果有人知道，麻烦给我留言，谢谢！！**
+
+*知道答案了，需要用android:banner属性，android:logo或android:icon不能铺满！！！！*
