@@ -1527,6 +1527,12 @@ img {
   text-align: center;
   text-decoration: none;
 }
+.article-tag::before,
+.article-tag::after {
+  content: "";
+  display: table;
+  clear: both;
+}
 .article-tag:before {
   font-size: 20px;
   font-family: feathericon;
