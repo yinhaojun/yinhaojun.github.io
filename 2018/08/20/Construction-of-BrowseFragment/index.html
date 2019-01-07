@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>Leanback实现TV开发教程之BrowseFragment | YHaojun</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="上一章我们介绍了在Android Studio上如何使用Leanback进行TV开发应用的一些介绍和基础知识，本章我们实现如何将Header和可选的对象集合（卡片）进行关联。在实现该功能之前，我们先来了解下BrowseFragment的结构和使用方法。 这里我们使用Android TV的示例程序进行介绍，当你启动应用的时候，内容是以网格的结构对齐的。左侧的每个header标题都有一个内容行，他们是">
+<meta name="keywords" content="Android,Leanback">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Leanback实现TV开发教程之BrowseFragment">
+<meta property="og:url" content="http://yoursite.com/2018/08/20/Construction-of-BrowseFragment/index.html">
+<meta property="og:site_name" content="YHaojun">
+<meta property="og:description" content="上一章我们介绍了在Android Studio上如何使用Leanback进行TV开发应用的一些介绍和基础知识，本章我们实现如何将Header和可选的对象集合（卡片）进行关联。在实现该功能之前，我们先来了解下BrowseFragment的结构和使用方法。 这里我们使用Android TV的示例程序进行介绍，当你启动应用的时候，内容是以网格的结构对齐的。左侧的每个header标题都有一个内容行，他们是">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://yoursite.com/2018/08/20/Construction-of-BrowseFragment/RowsAdapter1-800x451.png">
+<meta property="og:image" content="http://yoursite.com/2018/08/20/Construction-of-BrowseFragment/ListRow1-800x441.png">
+<meta property="og:image" content="http://yoursite.com/2018/08/20/Construction-of-BrowseFragment/GridItemPresenter1-800x450.png">
+<meta property="og:image" content="http://yoursite.com/2018/08/20/Construction-of-BrowseFragment/GridItemPresenter2-800x450.png">
+<meta property="og:updated_time" content="2019-01-07T04:13:05.782Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Leanback实现TV开发教程之BrowseFragment">
+<meta name="twitter:description" content="上一章我们介绍了在Android Studio上如何使用Leanback进行TV开发应用的一些介绍和基础知识，本章我们实现如何将Header和可选的对象集合（卡片）进行关联。在实现该功能之前，我们先来了解下BrowseFragment的结构和使用方法。 这里我们使用Android TV的示例程序进行介绍，当你启动应用的时候，内容是以网格的结构对齐的。左侧的每个header标题都有一个内容行，他们是">
+<meta name="twitter:image" content="http://yoursite.com/2018/08/20/Construction-of-BrowseFragment/RowsAdapter1-800x451.png">
+  
+    <link rel="alternate" href="/atom.xml" title="YHaojun" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">YHaojun</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Construction-of-BrowseFragment" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/08/20/Construction-of-BrowseFragment/" class="article-date">
+  <time datetime="2018-08-20T14:26:58.000Z" itemprop="datePublished">2018-08-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Leanback实现TV开发教程之BrowseFragment
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>上一章我们介绍了在Android Studio上如何使用Leanback进行TV开发应用的一些介绍和基础知识，本章我们实现如何将Header和可选的对象集合（卡片）进行关联。在实现该功能之前，我们先来了解下BrowseFragment的结构和使用方法。</p>
+<p>这里我们使用Android TV的示例程序进行介绍，当你启动应用的时候，内容是以网格的结构对齐的。左侧的每个header标题都有一个内容行，他们是1对1的关系，这种组合我们称之为“ListRow”。BrowseFragment主体就是一组ListRow的集合，本文我们将使用RowsAdapter来表示。</p>
+<a id="more"></a>
+<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>下图中，圆角蓝色框所包含的内容就是前文提到的ListRow，而蓝色方框包裹了一组ListRow，我们称之为RowsAdapter。</p>
+<p><img src="/2018/08/20/Construction-of-BrowseFragment/RowsAdapter1-800x451.png" alt="RowsAdapter1"></p>
+<p>我们接下来具体看看ListRow，这种结构由ArrayObjectAdapter（本文我们称之为RowAdapter）进行关联，维护了一组对象（本文我们称之为CardInfo或者Item）。</p>
+<p>这个CardInfo可以是任意的对象，我们稍后详细解释CardInfo并介绍如何利用Presenter来显示CardInfo。</p>
+<p><img src="/2018/08/20/Construction-of-BrowseFragment/ListRow1-800x441.png" alt="ListRow1"></p>
+<p>总结一下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ArrayObjectAdapter (RowsAdapter) ← A set of ListRow</span><br><span class="line"> ListRow = HeaderItem + ArrayObjectAdapter (RowAdapter)</span><br><span class="line"> ArrayObjectAdapter (RowAdapter) ← A set of Object (CardInfo/Item)</span><br></pre></td></tr></table></figure>
+<h1 id="具体介绍"><a href="#具体介绍" class="headerlink" title="具体介绍"></a>具体介绍</h1><h2 id="Presenter"><a href="#Presenter" class="headerlink" title="Presenter"></a>Presenter</h2><p>Presenter定义Card的设计与如何显示，由于它是一个抽象类，因此为了要为程序设计合适的UI，你必须继承该类。</p>
+<p>当你继承Presenter的时候，你至少要重写以下三个方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1. onCreateViewHolder(ViewGroup parent)</span><br><span class="line">2. onBindViewHolder(ViewHolder viewHolder, Object cardInfo/item)</span><br><span class="line">3. onUnbindViewHolder(ViewHolder viewHolder)</span><br></pre></td></tr></table></figure>
+<p>如果想了解更多关于这些方法的信息，建议你参考Presenter的源代码。ViewHolder是Presenter的内部类，该类绑定了View的引用，你可以在特定方法中通过ViewHolder访问View。</p>
+<p><em>注意：其实是对Recyclerview进行了封装，这么说是不是有种豁然开朗的感觉？</em></p>
+<h2 id="HeadersFragment、RowsFragment-GridItemPresenter"><a href="#HeadersFragment、RowsFragment-GridItemPresenter" class="headerlink" title="HeadersFragment、RowsFragment(GridItemPresenter)"></a>HeadersFragment、RowsFragment(GridItemPresenter)</h2><p>在这个示例中，Object(CardInfo/item)是String字符串类型，ViewHolder绑定TextView来显示该字符串。onCreateViewHolder()方法定义view的布局；onBindViewHolder()方法的参数包含了onCreateViewHolder方法中创建的viewHolder和对应的卡片信息，在本例中就是String字符串。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">   private class GridItemPresenter extends Presenter &#123;</span><br><span class="line">        @Override</span><br><span class="line">        public ViewHolder onCreateViewHolder(ViewGroup parent) &#123;</span><br><span class="line">            TextView view = new TextView(parent.getContext());</span><br><span class="line">            view.setLayoutParams(new ViewGroup.LayoutParams(GRID_ITEM_WIDTH, GRID_ITEM_HEIGHT));</span><br><span class="line">            view.setFocusable(true);</span><br><span class="line">            view.setFocusableInTouchMode(true);</span><br><span class="line">            view.setBackgroundColor(getResources().getColor(R.color.default_background));</span><br><span class="line">            view.setTextColor(Color.WHITE);</span><br><span class="line">            view.setGravity(Gravity.CENTER);</span><br><span class="line">            return new ViewHolder(view);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        @Override</span><br><span class="line">        public void onBindViewHolder(ViewHolder viewHolder, Object item) &#123;</span><br><span class="line">            ((TextView) viewHolder.view).setText((String) item);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        @Override</span><br><span class="line">        public void onUnbindViewHolder(ViewHolder viewHolder) &#123;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>定义完GridItemPresenter之后，你只需要在activity开始的时候设置RowsAdapter，你也可以在MainFragment的onActivityCreated()方法中去设置RowsAdapter。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">   public void onActivityCreated(Bundle savedInstanceState) &#123;</span><br><span class="line">       Log.i(TAG, &quot;onActivityCreated&quot;);</span><br><span class="line">       super.onActivityCreated(savedInstanceState);</span><br><span class="line"></span><br><span class="line">       setupUIElements();</span><br><span class="line"></span><br><span class="line">       loadRows();</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   ...</span><br><span class="line"></span><br><span class="line">   private void loadRows() &#123;</span><br><span class="line">       mRowsAdapter = new ArrayObjectAdapter(new ListRowPresenter());</span><br><span class="line"></span><br><span class="line">       /* GridItemPresenter */</span><br><span class="line">       HeaderItem gridItemPresenterHeader = new HeaderItem(0, &quot;GridItemPresenter&quot;);</span><br><span class="line"></span><br><span class="line">       GridItemPresenter mGridPresenter = new GridItemPresenter();</span><br><span class="line">       ArrayObjectAdapter gridRowAdapter = new ArrayObjectAdapter(mGridPresenter);</span><br><span class="line">       gridRowAdapter.add(&quot;ITEM 1&quot;);</span><br><span class="line">       gridRowAdapter.add(&quot;ITEM 2&quot;);</span><br><span class="line">       gridRowAdapter.add(&quot;ITEM 3&quot;);</span><br><span class="line">       mRowsAdapter.add(new ListRow(gridItemPresenterHeader, gridRowAdapter));</span><br><span class="line"></span><br><span class="line">       /* set */</span><br><span class="line">       setAdapter(mRowsAdapter);</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>以下是MainFragment的完整代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br></pre></td><td class="code"><pre><span class="line">package com.corochann.androidtvapptutorial;</span><br><span class="line"></span><br><span class="line">import android.graphics.Color;</span><br><span class="line">import android.os.Bundle;</span><br><span class="line">import android.support.v17.leanback.app.BrowseFragment;</span><br><span class="line">import android.support.v17.leanback.widget.ArrayObjectAdapter;</span><br><span class="line">import android.support.v17.leanback.widget.HeaderItem;</span><br><span class="line">import android.support.v17.leanback.widget.ListRow;</span><br><span class="line">import android.support.v17.leanback.widget.ListRowPresenter;</span><br><span class="line">import android.support.v17.leanback.widget.Presenter;</span><br><span class="line">import android.util.Log;</span><br><span class="line">import android.view.Gravity;</span><br><span class="line">import android.view.ViewGroup;</span><br><span class="line">import android.widget.TextView;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * Created by corochann on 2015/06/28.</span><br><span class="line"> */</span><br><span class="line">public class MainFragment extends BrowseFragment &#123;</span><br><span class="line">    private static final String TAG = MainFragment.class.getSimpleName();</span><br><span class="line"></span><br><span class="line">    private ArrayObjectAdapter mRowsAdapter;</span><br><span class="line">    private static final int GRID_ITEM_WIDTH = 300;</span><br><span class="line">    private static final int GRID_ITEM_HEIGHT = 200;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void onActivityCreated(Bundle savedInstanceState) &#123;</span><br><span class="line">        Log.i(TAG, &quot;onActivityCreated&quot;);</span><br><span class="line">        super.onActivityCreated(savedInstanceState);</span><br><span class="line"></span><br><span class="line">        setupUIElements();</span><br><span class="line"></span><br><span class="line">        loadRows();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private void setupUIElements() &#123;</span><br><span class="line">        // setBadgeDrawable(getActivity().getResources().getDrawable(R.drawable.videos_by_google_banner));</span><br><span class="line">        setTitle(&quot;Hello Android TV!&quot;); // Badge, when set, takes precedent</span><br><span class="line">        // over title</span><br><span class="line">        setHeadersState(HEADERS_ENABLED);</span><br><span class="line">        setHeadersTransitionOnBackEnabled(true);</span><br><span class="line"></span><br><span class="line">        // set fastLane (or headers) background color</span><br><span class="line">        setBrandColor(getResources().getColor(R.color.fastlane_background));</span><br><span class="line">        // set search icon color</span><br><span class="line">        setSearchAffordanceColor(getResources().getColor(R.color.search_opaque));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private void loadRows() &#123;</span><br><span class="line">        mRowsAdapter = new ArrayObjectAdapter(new ListRowPresenter());</span><br><span class="line"></span><br><span class="line">        /* GridItemPresenter */</span><br><span class="line">        HeaderItem gridItemPresenterHeader = new HeaderItem(0, &quot;GridItemPresenter&quot;);</span><br><span class="line"></span><br><span class="line">        GridItemPresenter mGridPresenter = new GridItemPresenter();</span><br><span class="line">        ArrayObjectAdapter gridRowAdapter = new ArrayObjectAdapter(mGridPresenter);</span><br><span class="line">        gridRowAdapter.add(&quot;ITEM 1&quot;);</span><br><span class="line">        gridRowAdapter.add(&quot;ITEM 2&quot;);</span><br><span class="line">        gridRowAdapter.add(&quot;ITEM 3&quot;);</span><br><span class="line">        mRowsAdapter.add(new ListRow(gridItemPresenterHeader, gridRowAdapter));</span><br><span class="line"></span><br><span class="line">        /* set */</span><br><span class="line">        setAdapter(mRowsAdapter);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private class GridItemPresenter extends Presenter &#123;</span><br><span class="line">        @Override</span><br><span class="line">        public ViewHolder onCreateViewHolder(ViewGroup parent) &#123;</span><br><span class="line">            TextView view = new TextView(parent.getContext());</span><br><span class="line">            view.setLayoutParams(new ViewGroup.LayoutParams(GRID_ITEM_WIDTH, GRID_ITEM_HEIGHT));</span><br><span class="line">            view.setFocusable(true);</span><br><span class="line">            view.setFocusableInTouchMode(true);</span><br><span class="line">            view.setBackgroundColor(getResources().getColor(R.color.default_background));</span><br><span class="line">            view.setTextColor(Color.WHITE);</span><br><span class="line">            view.setGravity(Gravity.CENTER);</span><br><span class="line">            return new ViewHolder(view);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        @Override</span><br><span class="line">        public void onBindViewHolder(ViewHolder viewHolder, Object item) &#123;</span><br><span class="line">            ((TextView) viewHolder.view).setText((String) item);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        @Override</span><br><span class="line">        public void onUnbindViewHolder(ViewHolder viewHolder) &#123;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在colors.xml中添加缺失的颜色：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;color name=&quot;default_background&quot;&gt;#3d3d3d&lt;/color&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="编译并运行"><a href="#编译并运行" class="headerlink" title="编译并运行"></a>编译并运行</h2><p>这样我们就实现了Header和Contents的关联，效果如下：</p>
+<p><img src="/2018/08/20/Construction-of-BrowseFragment/GridItemPresenter1-800x450.png" alt=""></p>
+<p><img src="/2018/08/20/Construction-of-BrowseFragment/GridItemPresenter2-800x450.png" alt=""></p>
+<p><em>注意：我们仅仅是定义了Presenter，加载数据。至于其他特性，如item会变大当被选中的时候，这些特性是由Leanbak Sdk已经实现好的。</em></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/08/20/Construction-of-BrowseFragment/" data-id="cjqlv4zp9000foj6ie29lq1yp" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Leanback/">Leanback</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/08/29/how-to-use-ImageCardView/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          how to use ImageCardView
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/08/06/introduce-how-to-build-Android-TV-Applications/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Leanback实现TV开发教程之简介</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git相关/">Git相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Leanback/">Leanback</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/博客/">博客</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/杂谈/">杂谈</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/Git相关/" style="font-size: 10px;">Git相关</a> <a href="/tags/Leanback/" style="font-size: 15px;">Leanback</a> <a href="/tags/博客/" style="font-size: 10px;">博客</a> <a href="/tags/杂谈/" style="font-size: 10px;">杂谈</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/08/29/how-to-use-ImageCardView/">how to use ImageCardView</a>
+          </li>
+        
+          <li>
+            <a href="/2018/08/20/Construction-of-BrowseFragment/">Leanback实现TV开发教程之BrowseFragment</a>
+          </li>
+        
+          <li>
+            <a href="/2018/08/06/introduce-how-to-build-Android-TV-Applications/">Leanback实现TV开发教程之简介</a>
+          </li>
+        
+          <li>
+            <a href="/2018/08/04/TextClock-for-Time/">时间控件TextClock</a>
+          </li>
+        
+          <li>
+            <a href="/2018/08/01/Glory-of-Kings/">对王者荣耀的爱与恨</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 YHaojun<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>YHaojun</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="静思笃行，持中秉正">
+<meta property="og:type" content="website">
+<meta property="og:title" content="YHaojun">
+<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:site_name" content="YHaojun">
+<meta property="og:description" content="静思笃行，持中秉正">
+<meta property="og:locale" content="default">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="YHaojun">
+<meta name="twitter:description" content="静思笃行，持中秉正">
+  
+    <link rel="alternate" href="/atom.xml" title="YHaojun" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">YHaojun</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-how-to-use-ImageCardView" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/08/29/how-to-use-ImageCardView/" class="article-date">
+  <time datetime="2018-08-29T13:00:20.000Z" itemprop="datePublished">2018-08-29</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/08/29/how-to-use-ImageCardView/">how to use ImageCardView</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>上篇文章，我们介绍了<strong>GridItemPresenter</strong>，关联的类主要有：</p>
+<ul>
+<li>Presenter：<strong>GridItemPresenter</strong></li>
+<li>ViewHolder’s view：<strong>TextView</strong></li>
+<li>CardInfo/Item：<strong>String</strong></li>
+</ul>
+<p>本篇文章我们主要讲解另外一种Presenter，</p>
+<ul>
+<li>Presenter：<strong>CardPresenter</strong></li>
+<li>ViewHolder’s view：<strong>ImageCardView</strong></li>
+<li>CardInfo/Item：<strong>Movie</strong></li>
+</ul>
+<p>个人认为Presenter还是很好理解的，就是定义Item的布局以及内容的显示。因此，真正需要核心内容主要还是Item如何布局与显示。本文我们主要讲解<strong><em>ImageCardView</em></strong>，该类是由Leanback提供，主要是包含了图片、标题和内容的卡片式布局。</p>
+        
+          <p class="article-more-link">
+            <a href="/2018/08/29/how-to-use-ImageCardView/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/08/29/how-to-use-ImageCardView/" data-id="cjqlv4zpb000goj6iu3p53psr" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Leanback/">Leanback</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Construction-of-BrowseFragment" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/08/20/Construction-of-BrowseFragment/" class="article-date">
+  <time datetime="2018-08-20T14:26:58.000Z" itemprop="datePublished">2018-08-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/08/20/Construction-of-BrowseFragment/">Leanback实现TV开发教程之BrowseFragment</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>上一章我们介绍了在Android Studio上如何使用Leanback进行TV开发应用的一些介绍和基础知识，本章我们实现如何将Header和可选的对象集合（卡片）进行关联。在实现该功能之前，我们先来了解下BrowseFragment的结构和使用方法。</p>
+<p>这里我们使用Android TV的示例程序进行介绍，当你启动应用的时候，内容是以网格的结构对齐的。左侧的每个header标题都有一个内容行，他们是1对1的关系，这种组合我们称之为“ListRow”。BrowseFragment主体就是一组ListRow的集合，本文我们将使用RowsAdapter来表示。</p>
+        
+          <p class="article-more-link">
+            <a href="/2018/08/20/Construction-of-BrowseFragment/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/08/20/Construction-of-BrowseFragment/" data-id="cjqlv4zp9000foj6ie29lq1yp" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Leanback/">Leanback</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-introduce-how-to-build-Android-TV-Applications" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/08/06/introduce-how-to-build-Android-TV-Applications/" class="article-date">
+  <time datetime="2018-08-06T13:32:25.000Z" itemprop="datePublished">2018-08-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/08/06/introduce-how-to-build-Android-TV-Applications/">Leanback实现TV开发教程之简介</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>12年实习去了一家机顶盒公司，时隔5年后再次进入智能机顶盒研发的公司，也许这就是一种宿命吧！记得12年安卓还是起步阶段，当时能够在机顶盒上面研发应用没有什么参考资料，就当成不能触摸的手机开发而已；现在就不同了，安卓已经非常的成熟。Google为安卓TV提供了专门的SDK，针对TV应用开发者提供了Leanback库。</p>
+<p>但是国内对于Leanback库的介绍和资料还是挺少的，其实我个人觉得也很正常了。</p>
+<ul>
+<li>Leanback上手很麻烦；</li>
+<li>Leanback很难定制化；</li>
+</ul>
+<p>但是不管咋样，自己毕竟是做TV开发的，Leanback还是要掌握的，从今天起开始给给大家来个如何利用Leanback开发TV应用的系列教程，希望大家喜欢！</p>
+        
+          <p class="article-more-link">
+            <a href="/2018/08/06/introduce-how-to-build-Android-TV-Applications/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/08/06/introduce-how-to-build-Android-TV-Applications/" data-id="cjqlv4zpd000ioj6ip8516x04" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Leanback/">Leanback</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-TextClock-for-Time" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/08/04/TextClock-for-Time/" class="article-date">
+  <time datetime="2018-08-04T11:37:46.000Z" itemprop="datePublished">2018-08-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/08/04/TextClock-for-Time/">时间控件TextClock</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>各位大佬好，小弟最近做了一款安卓机顶盒的主页。因为是针对电视的主页，一般来说需要显示系统时间。糟糕的是，我在Android Studio里面我没有找到对应显示时间的控件，参考以前同事写的代码后采用了以下解决方案：<strong>利用定时器，每秒取一次系统时间，然后格式化并显示在TextView上。</strong>显然这种方式是不行的，那我们该怎么做呢？</p>
+        
+          <p class="article-more-link">
+            <a href="/2018/08/04/TextClock-for-Time/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/08/04/TextClock-for-Time/" data-id="cjqlv4zor0006oj6ilknib4y5" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Glory-of-Kings" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/08/01/Glory-of-Kings/" class="article-date">
+  <time datetime="2018-08-01T00:51:34.000Z" itemprop="datePublished">2018-08-01</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/08/01/Glory-of-Kings/">对王者荣耀的爱与恨</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>记得应该是17年的4月份的样子，被同事怂恿去玩王者荣耀这款游戏，因为他们总是五缺一！！我一直都是对游戏不感冒的人，比如LOL、CF等等，大学也就玩了下CF，还被人吐槽水平太菜，所以我根本就不会认为对这款手游会上瘾。</p>
+<p>正如预想的一样，一开始什么都不会，就知道拿个亚瑟玩匹配，然后就把亚瑟的熟练度玩到最高了。但是尽管如此，还是不知道如何买英雄、游戏中如何买装备、亚瑟一技能还能打出沉默，好尴尬！</p>
+        
+          <p class="article-more-link">
+            <a href="/2018/08/01/Glory-of-Kings/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/08/01/Glory-of-Kings/" data-id="cjqlv4zop0004oj6ie2lke2uj" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/杂谈/">杂谈</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Build-personal-blog-by-hexo" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/07/28/Build-personal-blog-by-hexo/" class="article-date">
+  <time datetime="2018-07-28T07:47:01.000Z" itemprop="datePublished">2018-07-28</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/07/28/Build-personal-blog-by-hexo/">Hexo搭建个人博客</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>博客已经不是什么很新鲜的玩意儿了，尤其是当微信公众号、简书等优秀的写作平台的兴起，个人博客的价值已经越来越式微了。但是作为一名软件研发行业的小学生，拥有个人博客记录一些日常所学、平日所感还是感觉不错的，一直以来我都是利用Hexo生成博客并托管到Github等开源平台。这期间还挺折腾的，主要表现在：</p>
+<ol>
+<li>博客的迁移，从github迁移到gitlab，然后是coding，然后又迁移到github；</li>
+<li>写过几篇文章，但是都感觉质量不高，而且很难坚持；</li>
+<li>托管到第三方网站，依赖别人必将受限于人。</li>
+</ol>
+<p>因此这次痛下决心，自己购买了个阿里云服务器和域名，将hexo搭建的博客放在自己的服务器上，然后利用gitolite进行管理，nginx实现展示，下面分享给大家。</p>
+        
+          <p class="article-more-link">
+            <a href="/2018/07/28/Build-personal-blog-by-hexo/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/07/28/Build-personal-blog-by-hexo/" data-id="cjqlv4zo50001oj6i3o2py5r7" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/博客/">博客</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-use-gitolite-to-manage-project" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/07/27/use-gitolite-to-manage-project/" class="article-date">
+  <time datetime="2018-07-27T12:23:20.000Z" itemprop="datePublished">2018-07-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/07/27/use-gitolite-to-manage-project/">使用gitolite搭建Git服务器</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>2018年4月底入职一家研发智能机顶盒的公司，7月中旬一位大神离职了，然后进行工作交接，其中就涉及到了如何利用Gitolite管理项目。Git操作使用的很多，但是如何搭建Git服务器以及如何进行管理却还没有接触过，因此利用闲暇时间摸索了下并记录下来~~<br>我个人买了个阿里云的服务器，一年是293￥，其实也不算贵了。 主要原因是：</p>
+<ol>
+<li>这毕竟是自己个人学习的内容，当然不能直接在公司服务器进行测试了；</li>
+<li>以前将个人博客托管在github或者gitlab，总是会丢数据，所以打算将博客搭建到个人服务器，方便管理；</li>
+<li>后期如果精力的话会实现一些个人项目，可以放在自己的服务器中。</li>
+</ol>
+        
+          <p class="article-more-link">
+            <a href="/2018/07/27/use-gitolite-to-manage-project/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/07/27/use-gitolite-to-manage-project/" data-id="cjqlv4zos0008oj6ijqoiu9sc" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git相关/">Git相关</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git相关/">Git相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Leanback/">Leanback</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/博客/">博客</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/杂谈/">杂谈</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/Git相关/" style="font-size: 10px;">Git相关</a> <a href="/tags/Leanback/" style="font-size: 15px;">Leanback</a> <a href="/tags/博客/" style="font-size: 10px;">博客</a> <a href="/tags/杂谈/" style="font-size: 10px;">杂谈</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/08/29/how-to-use-ImageCardView/">how to use ImageCardView</a>
+          </li>
+        
+          <li>
+            <a href="/2018/08/20/Construction-of-BrowseFragment/">Leanback实现TV开发教程之BrowseFragment</a>
+          </li>
+        
+          <li>
+            <a href="/2018/08/06/introduce-how-to-build-Android-TV-Applications/">Leanback实现TV开发教程之简介</a>
+          </li>
+        
+          <li>
+            <a href="/2018/08/04/TextClock-for-Time/">时间控件TextClock</a>
+          </li>
+        
+          <li>
+            <a href="/2018/08/01/Glory-of-Kings/">对王者荣耀的爱与恨</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 YHaojun<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

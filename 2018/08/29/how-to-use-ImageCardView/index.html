@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>how to use ImageCardView | YHaojun</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="前言上篇文章，我们介绍了GridItemPresenter，关联的类主要有：  Presenter：GridItemPresenter ViewHolder’s view：TextView CardInfo/Item：String  本篇文章我们主要讲解另外一种Presenter，  Presenter：CardPresenter ViewHolder’s view：ImageCardView C">
+<meta name="keywords" content="Android,Leanback">
+<meta property="og:type" content="article">
+<meta property="og:title" content="how to use ImageCardView">
+<meta property="og:url" content="http://yoursite.com/2018/08/29/how-to-use-ImageCardView/index.html">
+<meta property="og:site_name" content="YHaojun">
+<meta property="og:description" content="前言上篇文章，我们介绍了GridItemPresenter，关联的类主要有：  Presenter：GridItemPresenter ViewHolder’s view：TextView CardInfo/Item：String  本篇文章我们主要讲解另外一种Presenter，  Presenter：CardPresenter ViewHolder’s view：ImageCardView C">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://yoursite.com/2018/08/29/how-to-use-ImageCardView/first.png">
+<meta property="og:image" content="http://yoursite.com/2018/08/29/how-to-use-ImageCardView/second.png">
+<meta property="og:image" content="http://yoursite.com/2018/08/29/how-to-use-ImageCardView/third.png">
+<meta property="og:updated_time" content="2019-01-07T04:13:05.788Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="how to use ImageCardView">
+<meta name="twitter:description" content="前言上篇文章，我们介绍了GridItemPresenter，关联的类主要有：  Presenter：GridItemPresenter ViewHolder’s view：TextView CardInfo/Item：String  本篇文章我们主要讲解另外一种Presenter，  Presenter：CardPresenter ViewHolder’s view：ImageCardView C">
+<meta name="twitter:image" content="http://yoursite.com/2018/08/29/how-to-use-ImageCardView/first.png">
+  
+    <link rel="alternate" href="/atom.xml" title="YHaojun" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">YHaojun</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-how-to-use-ImageCardView" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/08/29/how-to-use-ImageCardView/" class="article-date">
+  <time datetime="2018-08-29T13:00:20.000Z" itemprop="datePublished">2018-08-29</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      how to use ImageCardView
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>上篇文章，我们介绍了<strong>GridItemPresenter</strong>，关联的类主要有：</p>
+<ul>
+<li>Presenter：<strong>GridItemPresenter</strong></li>
+<li>ViewHolder’s view：<strong>TextView</strong></li>
+<li>CardInfo/Item：<strong>String</strong></li>
+</ul>
+<p>本篇文章我们主要讲解另外一种Presenter，</p>
+<ul>
+<li>Presenter：<strong>CardPresenter</strong></li>
+<li>ViewHolder’s view：<strong>ImageCardView</strong></li>
+<li>CardInfo/Item：<strong>Movie</strong></li>
+</ul>
+<p>个人认为Presenter还是很好理解的，就是定义Item的布局以及内容的显示。因此，真正需要核心内容主要还是Item如何布局与显示。本文我们主要讲解<strong><em>ImageCardView</em></strong>，该类是由Leanback提供，主要是包含了图片、标题和内容的卡片式布局。</p>
+<a id="more"></a>
+<h1 id="ImageCardView基础"><a href="#ImageCardView基础" class="headerlink" title="ImageCardView基础"></a>ImageCardView基础</h1><p>ImageCardView是BaseCardView的子类，所以阅读BaseCardView的源码是个不错的选择。以下是对BaseCardView的解释：</p>
+<blockquote>
+<p>android.support.v17.leanback.widget  public class BaseCardView  extends android.widget.FrameLayout A card style layout that responds to certain state changes. It arranges its children in a vertical column, with different regions becoming  visible at different times.  A BaseCardView will draw its children  based on its type, the region visibilities of the child types, and the  state of the widget. A child may be marked as belonging to one of three  regions: main, info, or extra. The main region is always visible, while  the info and extra regions can be set to display based on the activated  or selected state of the View. The card states are set by calling  setActivated and setSelected.</p>
+</blockquote>
+<p>BaseCardView本身并不提供特定的布局实现，因此你可以通过定义继承BaseCardView的子类来实现特定的布局控件。ImageCardView是SDK中唯一提供的继承自BaseCardView的子类，现在让我们具体来学习下如何使用它吧！！！</p>
+<p>本例主要就是简单的显示电影信息，包括电影海报、标题和简介；主要新建的类有：</p>
+<table>
+<thead>
+<tr>
+<th>序号</th>
+<th>名称</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>CardPresenter</td>
+<td>决定Item的布局和内容显示</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Movie</td>
+<td>电影信息</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Utils</td>
+<td>工具类</td>
+</tr>
+</tbody>
+</table>
+<h2 id="添加CardPresenter"><a href="#添加CardPresenter" class="headerlink" title="添加CardPresenter"></a>添加CardPresenter</h2><p>选中项目包名，然后右键-&gt;New-&gt;class-&gt;CardPresenter。</p>
+<p>该类继承自Presenter，通过继承父类的Presenter.ViewHolder实现自己的ViewHolder，该ViewHolder持有一个ImageCardView的对象，用来显示具体的电影信息。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line">public class CardPresenter extends Presenter &#123;</span><br><span class="line"> </span><br><span class="line">    private static final String TAG = CardPresenter.class.getSimpleName();</span><br><span class="line"> </span><br><span class="line">    private static Context mContext;</span><br><span class="line">    private static int CARD_WIDTH = 313;</span><br><span class="line">    private static int CARD_HEIGHT = 176;</span><br><span class="line"> </span><br><span class="line">    static class ViewHolder extends Presenter.ViewHolder &#123;</span><br><span class="line">        private Movie mMovie;</span><br><span class="line">        private ImageCardView mCardView;</span><br><span class="line">        private Drawable mDefaultCardImage;</span><br><span class="line"> </span><br><span class="line">        public ViewHolder(View view) &#123;</span><br><span class="line">            super(view);</span><br><span class="line">            mCardView = (ImageCardView) view;</span><br><span class="line">            //movie是默认的图片，需要用户自己添加到drawable中</span><br><span class="line">            mDefaultCardImage = mContext.getResources().getDrawable(R.drawable.movie);</span><br><span class="line">        &#125;</span><br><span class="line"> </span><br><span class="line">        public void setMovie(Movie m) &#123;</span><br><span class="line">            mMovie = m;</span><br><span class="line">        &#125;</span><br><span class="line"> </span><br><span class="line">        public Movie getMovie() &#123;</span><br><span class="line">            return mMovie;</span><br><span class="line">        &#125;</span><br><span class="line"> </span><br><span class="line">        public ImageCardView getCardView() &#123;</span><br><span class="line">            return mCardView;</span><br><span class="line">        &#125;</span><br><span class="line"> </span><br><span class="line">        public Drawable getDefaultCardImage() &#123;</span><br><span class="line">            return mDefaultCardImage;</span><br><span class="line">        &#125;</span><br><span class="line"> </span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    @Override</span><br><span class="line">    public ViewHolder onCreateViewHolder(ViewGroup parent) &#123;</span><br><span class="line">        Log.d(TAG, &quot;onCreateViewHolder&quot;);</span><br><span class="line">        mContext = parent.getContext();</span><br><span class="line"> </span><br><span class="line">        ImageCardView cardView = new ImageCardView(mContext);</span><br><span class="line">        cardView.setFocusable(true);</span><br><span class="line">        cardView.setFocusableInTouchMode(true);</span><br><span class="line">        cardView.setBackgroundColor(mContext.getResources().getColor(R.color.fastlane_background));</span><br><span class="line">        return new ViewHolder(cardView);</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    @Override</span><br><span class="line">    public void onBindViewHolder(Presenter.ViewHolder viewHolder, Object item) &#123;</span><br><span class="line">        Movie movie = (Movie) item;</span><br><span class="line">        ((ViewHolder) viewHolder).setMovie(movie);</span><br><span class="line"> </span><br><span class="line">        Log.d(TAG, &quot;onBindViewHolder&quot;);</span><br><span class="line">        ((ViewHolder) viewHolder).mCardView.setTitleText(movie.getTitle());</span><br><span class="line">        ((ViewHolder) viewHolder).mCardView.setContentText(movie.getStudio());</span><br><span class="line">        ((ViewHolder) viewHolder).mCardView.setMainImageDimensions(CARD_WIDTH, CARD_HEIGHT);</span><br><span class="line">        ((ViewHolder) viewHolder).mCardView.setMainImage(((ViewHolder) viewHolder).getDefaultCardImage());</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    @Override</span><br><span class="line">    public void onUnbindViewHolder(Presenter.ViewHolder viewHolder) &#123;</span><br><span class="line">        Log.d(TAG, &quot;onUnbindViewHolder&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    @Override</span><br><span class="line">    public void onViewAttachedToWindow(Presenter.ViewHolder viewHolder) &#123;</span><br><span class="line">        // TO DO</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="添加Movie"><a href="#添加Movie" class="headerlink" title="添加Movie"></a>添加Movie</h2><p><strong>Movie</strong>类其实就是具体的数据源，目前主要包含电影的标题、海报和内容三个属性，后续还会进行扩展。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>准备好数据模型类（Movie）和Presenter（CardPresenter）后，我们就可以显示Movie信息了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">private void loadRows() &#123;</span><br><span class="line">        ArrayObjectAdapter mRowsAdapter = new ArrayObjectAdapter(new ListRowPresenter()); </span><br><span class="line">        /* CardPresenter */</span><br><span class="line">        HeaderItem cardPresenterHeader = new HeaderItem(0, &quot;CardPresenter&quot;);</span><br><span class="line">        CardPresenter cardPresenter = new CardPresenter();</span><br><span class="line">        ArrayObjectAdapter cardRowAdapter = new ArrayObjectAdapter(cardPresenter);</span><br><span class="line"> </span><br><span class="line">        for(int i=0; i&lt;10; i++) &#123;</span><br><span class="line">            Movie movie = new Movie();</span><br><span class="line">            movie.setTitle(&quot;title&quot; + i);</span><br><span class="line">            movie.setStudio(&quot;studio&quot; + i);</span><br><span class="line">            cardRowAdapter.add(movie);</span><br><span class="line">        &#125;</span><br><span class="line">        mRowsAdapter.add(new ListRow(cardPresenterHeader, cardRowAdapter));</span><br><span class="line"> 		setAdapter(mRowsAdapter)</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="查看效果"><a href="#查看效果" class="headerlink" title="查看效果"></a>查看效果</h2><p>编译运行，结果如下：</p>
+<p><img src="/2018/08/29/how-to-use-ImageCardView/first.png" alt="first.png"></p>
+<p><img src="/2018/08/29/how-to-use-ImageCardView/second.png" alt="second.png"></p>
+<h1 id="Picasso显示电影海报"><a href="#Picasso显示电影海报" class="headerlink" title="Picasso显示电影海报"></a>Picasso显示电影海报</h1><p>我们会发现上面的结果没有显示电影海报信息，而是显示了一张默认图片。一般来说电影信息都是从后台数据取出来的，包括海报、标题、描述等等，这一节主要介绍如何使用Picasso库来在线加载电影海报。</p>
+<p><strong>picasso</strong>是一个在线加载图片的开源库，类似的还有Glide等，具体的介绍可以参考这里：</p>
+<ul>
+<li><a href="http://square.github.io/picasso/" target="_blank" rel="noopener">Picasso</a></li>
+<li><a href="http://code.tutsplus.com/tutorials/android-sdk-working-with-picasso--cms-22149" target="_blank" rel="noopener">Android SDK: Working with Picasso</a></li>
+<li><a href="http://javatechig.com/android/how-to-use-picasso-library-in-android" target="_blank" rel="noopener">How to Use Picasso Image Loader Library in Android</a></li>
+</ul>
+<h2 id="添加picasso"><a href="#添加picasso" class="headerlink" title="添加picasso"></a>添加picasso</h2><p>在build.gradle中添加picasso库，代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="在Movie添加海报字段"><a href="#在Movie添加海报字段" class="headerlink" title="在Movie添加海报字段"></a>在Movie添加海报字段</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">private String cardImageUrl;</span><br><span class="line"> </span><br><span class="line">public String getCardImageUrl() &#123;</span><br><span class="line">    return cardImageUrl;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">public void setCardImageUrl(String cardImageUrl) &#123;</span><br><span class="line">    this.cardImageUrl = cardImageUrl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们也可以定义个getImageURI 的方法，将Url转成URI格式。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="新增PicassoImageCardViewTarget"><a href="#新增PicassoImageCardViewTarget" class="headerlink" title="新增PicassoImageCardViewTarget"></a>新增PicassoImageCardViewTarget</h2><p>PicassoImageCardViewTarget继承自Picasso的Target类，传入ImageCardView，Picasso会将加载结果设置到该ImageCardView中。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">public static class PicassoImageCardViewTarget implements Target &#123;</span><br><span class="line">        private ImageCardView mImageCardView;</span><br><span class="line"> </span><br><span class="line">        public PicassoImageCardViewTarget(ImageCardView imageCardView) &#123;</span><br><span class="line">            mImageCardView = imageCardView;</span><br><span class="line">        &#125;</span><br><span class="line"> </span><br><span class="line">        @Override</span><br><span class="line">        public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom loadedFrom) &#123;</span><br><span class="line">            Drawable bitmapDrawable = new BitmapDrawable(mContext.getResources(), bitmap);</span><br><span class="line">            mImageCardView.setMainImage(bitmapDrawable);</span><br><span class="line">        &#125;</span><br><span class="line"> </span><br><span class="line">        @Override</span><br><span class="line">    	public void onBitmapFailed(Exception e, Drawable errorDrawable) &#123;</span><br><span class="line">        	mImageCardView.setMainImage(errorDrawable);</span><br><span class="line">    	&#125;</span><br><span class="line"> </span><br><span class="line">        @Override</span><br><span class="line">        public void onPrepareLoad(Drawable drawable) &#123;</span><br><span class="line">            // Do nothing, default_background manager has its own transitions</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="修改ViewHolder"><a href="#修改ViewHolder" class="headerlink" title="修改ViewHolder"></a>修改ViewHolder</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">public ViewHolder(View view) &#123;</span><br><span class="line">           super(view);</span><br><span class="line">           mCardView = (ImageCardView) view;</span><br><span class="line">           mImageCardViewTarget = new PicassoImageCardViewTarget(mCardView);</span><br><span class="line">           mDefaultCardImage = mContext.getResources().getDrawable(R.drawable.movie);</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">          ...</span><br><span class="line"></span><br><span class="line">       protected void updateCardViewImage(URI uri) &#123;</span><br><span class="line">           Picasso.with(mContext)</span><br><span class="line">                   .load(uri.toString())</span><br><span class="line">                   .resize(Utils.convertDpToPixel(mContext, CARD_WIDTH),</span><br><span class="line">                           Utils.convertDpToPixel(mContext, CARD_HEIGHT))</span><br><span class="line">                   .error(mDefaultCardImage)</span><br><span class="line">                   .into(mImageCardViewTarget);</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">   ...</span><br><span class="line"></span><br><span class="line">   @Override</span><br><span class="line">   public void onBindViewHolder(Presenter.ViewHolder viewHolder, Object item) &#123;</span><br><span class="line">       Movie movie = (Movie) item;</span><br><span class="line">       ((ViewHolder) viewHolder).setMovie(movie);</span><br><span class="line"></span><br><span class="line">       Log.d(TAG, &quot;onBindViewHolder&quot;);</span><br><span class="line">       if (movie.getCardImageUrl() != null) &#123;</span><br><span class="line">           ((ViewHolder) viewHolder).mCardView.setTitleText(movie.getTitle());</span><br><span class="line">           ((ViewHolder) viewHolder).mCardView.setContentText(movie.getStudio());</span><br><span class="line">           ((ViewHolder) viewHolder).mCardView.setMainImageDimensions(CARD_WIDTH, CARD_HEIGHT);</span><br><span class="line">           ((ViewHolder) viewHolder).updateCardViewImage(movie.getCardImageURI());</span><br><span class="line">           //((ViewHolder) viewHolder).mCardView.setMainImage(((ViewHolder) viewHolder).getDefaultCardImage());</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>Movie设置海报地址</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">ArrayObjectAdapter mRowsAdapter = new ArrayObjectAdapter(new ListRowPresenter());</span><br><span class="line">        /* CardPresenter */</span><br><span class="line">        HeaderItem cardPresenterHeader = new HeaderItem(0, &quot;本地背景&quot;);</span><br><span class="line">        ArrayObjectAdapter cardRowAdapter = new ArrayObjectAdapter(new CardPresenter());</span><br><span class="line">        String[] imgs = &#123;</span><br><span class="line">        	   &quot;https://extraimage.net/images/2018/08/27/57861ec7718febe65615debfdc2524b9.jpg&quot;,</span><br><span class="line">                &quot;https://extraimage.net/images/2018/08/28/33ba4d8e91c9f9891a3bffce06960919.jpg&quot;,</span><br><span class="line">                &quot;https://extraimage.net/images/2018/08/26/72b140200fc0622e9df270fca7f8d83b.jpg&quot;,</span><br><span class="line">                &quot;https://extraimage.net/images/2018/08/19/fd471762a6dc439334f9ca47fda75190.jpg&quot;,</span><br><span class="line">                &quot;http://images2.imagebam.com/c0/45/05/765e68930277054.jpg&quot;,</span><br><span class="line">                &quot;http://images2.imagebam.com/96/af/53/a18b21937430324.jpg&quot;,</span><br><span class="line">                &quot;https://www.z4a.net/images/2018/07/19/065f3550a6973cd7a.jpg&quot;,</span><br><span class="line">                &quot;http://images2.imagebam.com/2d/64/d3/b69a83936061624.jpg&quot;,</span><br><span class="line">                &quot;http://images2.imagebam.com/f0/38/d1/2fa611932895844.jpg&quot;,</span><br><span class="line">                &quot;http://www.imageto.org/images/tUAZ1.jpg&quot;&#125;;</span><br><span class="line">        for (int i = 0; i &lt; 10; i++) &#123;</span><br><span class="line">            Movie movie = new Movie();</span><br><span class="line">            movie.setTitle(&quot;title&quot; + i);</span><br><span class="line">            movie.setStudio(&quot;studio&quot; + i);</span><br><span class="line">            movie.setCardImageUrl(imgs[i]);</span><br><span class="line">            cardRowAdapter.add(movie);</span><br><span class="line">        &#125;</span><br><span class="line">        mRowsAdapter.add(new ListRow(cardPresenterHeader, cardRowAdapter));</span><br></pre></td></tr></table></figure>
+<h2 id="添加网络权限"><a href="#添加网络权限" class="headerlink" title="添加网络权限"></a>添加网络权限</h2><p>因为是加载网络图片，所以务必在AndroidManifest.xml中添加网络权限。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;uses-permission android:name=&quot;android.permission.INTERNET&quot; /&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="查看效果-1"><a href="#查看效果-1" class="headerlink" title="查看效果"></a>查看效果</h2><p>编译运行，效果如下：</p>
+<p><img src="/2018/08/29/how-to-use-ImageCardView/third.png" alt="third.png"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/08/29/how-to-use-ImageCardView/" data-id="cjqlv4zpb000goj6iu3p53psr" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Leanback/">Leanback</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/08/20/Construction-of-BrowseFragment/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Leanback实现TV开发教程之BrowseFragment</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git相关/">Git相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Leanback/">Leanback</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/博客/">博客</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/杂谈/">杂谈</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/Git相关/" style="font-size: 10px;">Git相关</a> <a href="/tags/Leanback/" style="font-size: 15px;">Leanback</a> <a href="/tags/博客/" style="font-size: 10px;">博客</a> <a href="/tags/杂谈/" style="font-size: 10px;">杂谈</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/08/29/how-to-use-ImageCardView/">how to use ImageCardView</a>
+          </li>
+        
+          <li>
+            <a href="/2018/08/20/Construction-of-BrowseFragment/">Leanback实现TV开发教程之BrowseFragment</a>
+          </li>
+        
+          <li>
+            <a href="/2018/08/06/introduce-how-to-build-Android-TV-Applications/">Leanback实现TV开发教程之简介</a>
+          </li>
+        
+          <li>
+            <a href="/2018/08/04/TextClock-for-Time/">时间控件TextClock</a>
+          </li>
+        
+          <li>
+            <a href="/2018/08/01/Glory-of-Kings/">对王者荣耀的爱与恨</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 YHaojun<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
