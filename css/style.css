@@ -1310,7 +1310,7 @@ img {
   clear: both;
 }
 .article-entry .pullquote {
-  text-align: left;
+  text-align: right;
   width: 45%;
   margin: 0;
 }
@@ -1516,29 +1516,6 @@ img {
 .article-share-google:hover {
   background: #dd4b39;
   text-shadow: 0 1px #be3221;
-}
-.article-tag {
-  position: relative;
-  display: block;
-  float: left;
-  width: 5rem;
-  height: 3.6rem;
-  color: #172d3e;
-  text-align: center;
-  text-decoration: none;
-}
-.article-tag::before,
-.article-tag::after {
-  content: "";
-  display: table;
-  clear: both;
-}
-.article-tag:before {
-  font-size: 20px;
-  font-family: feathericon;
-}
-.article-tag:hover {
-  color: #fff;
 }
 .article-gallery {
   position: relative;
