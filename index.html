@@ -65,154 +65,6 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-how-to-use-ImageCardView" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/08/29/how-to-use-ImageCardView/" class="article-date">
-  <time datetime="2018-08-29T13:00:20.000Z" itemprop="datePublished">2018-08-29</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/08/29/how-to-use-ImageCardView/">how to use ImageCardView</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>上篇文章，我们介绍了<strong>GridItemPresenter</strong>，关联的类主要有：</p>
-<ul>
-<li>Presenter：<strong>GridItemPresenter</strong></li>
-<li>ViewHolder’s view：<strong>TextView</strong></li>
-<li>CardInfo/Item：<strong>String</strong></li>
-</ul>
-<p>本篇文章我们主要讲解另外一种Presenter，</p>
-<ul>
-<li>Presenter：<strong>CardPresenter</strong></li>
-<li>ViewHolder’s view：<strong>ImageCardView</strong></li>
-<li>CardInfo/Item：<strong>Movie</strong></li>
-</ul>
-<p>个人认为Presenter还是很好理解的，就是定义Item的布局以及内容的显示。因此，真正需要核心内容主要还是Item如何布局与显示。本文我们主要讲解<strong><em>ImageCardView</em></strong>，该类是由Leanback提供，主要是包含了图片、标题和内容的卡片式布局。</p>
-        
-          <p class="article-more-link">
-            <a href="/2018/08/29/how-to-use-ImageCardView/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/08/29/how-to-use-ImageCardView/" data-id="cjqlv4zpb000goj6iu3p53psr" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Leanback/">Leanback</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Construction-of-BrowseFragment" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/08/20/Construction-of-BrowseFragment/" class="article-date">
-  <time datetime="2018-08-20T14:26:58.000Z" itemprop="datePublished">2018-08-20</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/08/20/Construction-of-BrowseFragment/">Leanback实现TV开发教程之BrowseFragment</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>上一章我们介绍了在Android Studio上如何使用Leanback进行TV开发应用的一些介绍和基础知识，本章我们实现如何将Header和可选的对象集合（卡片）进行关联。在实现该功能之前，我们先来了解下BrowseFragment的结构和使用方法。</p>
-<p>这里我们使用Android TV的示例程序进行介绍，当你启动应用的时候，内容是以网格的结构对齐的。左侧的每个header标题都有一个内容行，他们是1对1的关系，这种组合我们称之为“ListRow”。BrowseFragment主体就是一组ListRow的集合，本文我们将使用RowsAdapter来表示。</p>
-        
-          <p class="article-more-link">
-            <a href="/2018/08/20/Construction-of-BrowseFragment/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/08/20/Construction-of-BrowseFragment/" data-id="cjqlv4zp9000foj6ie29lq1yp" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Leanback/">Leanback</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-introduce-how-to-build-Android-TV-Applications" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/08/06/introduce-how-to-build-Android-TV-Applications/" class="article-date">
-  <time datetime="2018-08-06T13:32:25.000Z" itemprop="datePublished">2018-08-06</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/08/06/introduce-how-to-build-Android-TV-Applications/">Leanback实现TV开发教程之简介</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>12年实习去了一家机顶盒公司，时隔5年后再次进入智能机顶盒研发的公司，也许这就是一种宿命吧！记得12年安卓还是起步阶段，当时能够在机顶盒上面研发应用没有什么参考资料，就当成不能触摸的手机开发而已；现在就不同了，安卓已经非常的成熟。Google为安卓TV提供了专门的SDK，针对TV应用开发者提供了Leanback库。</p>
-<p>但是国内对于Leanback库的介绍和资料还是挺少的，其实我个人觉得也很正常了。</p>
-<ul>
-<li>Leanback上手很麻烦；</li>
-<li>Leanback很难定制化；</li>
-</ul>
-<p>但是不管咋样，自己毕竟是做TV开发的，Leanback还是要掌握的，从今天起开始给给大家来个如何利用Leanback开发TV应用的系列教程，希望大家喜欢！</p>
-        
-          <p class="article-more-link">
-            <a href="/2018/08/06/introduce-how-to-build-Android-TV-Applications/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/08/06/introduce-how-to-build-Android-TV-Applications/" data-id="cjqlv4zpd000ioj6ip8516x04" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Leanback/">Leanback</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
     <article id="post-TextClock-for-Time" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/08/04/TextClock-for-Time/" class="article-date">
@@ -244,54 +96,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/08/04/TextClock-for-Time/" data-id="cjqlv4zor0006oj6ilknib4y5" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/08/04/TextClock-for-Time/" data-id="cjqlxsuno0005rb6iqjg3truq" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Glory-of-Kings" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/08/01/Glory-of-Kings/" class="article-date">
-  <time datetime="2018-08-01T00:51:34.000Z" itemprop="datePublished">2018-08-01</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/08/01/Glory-of-Kings/">对王者荣耀的爱与恨</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>记得应该是17年的4月份的样子，被同事怂恿去玩王者荣耀这款游戏，因为他们总是五缺一！！我一直都是对游戏不感冒的人，比如LOL、CF等等，大学也就玩了下CF，还被人吐槽水平太菜，所以我根本就不会认为对这款手游会上瘾。</p>
-<p>正如预想的一样，一开始什么都不会，就知道拿个亚瑟玩匹配，然后就把亚瑟的熟练度玩到最高了。但是尽管如此，还是不知道如何买英雄、游戏中如何买装备、亚瑟一技能还能打出沉默，好尴尬！</p>
-        
-          <p class="article-more-link">
-            <a href="/2018/08/01/Glory-of-Kings/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/08/01/Glory-of-Kings/" data-id="cjqlv4zop0004oj6ie2lke2uj" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/杂谈/">杂谈</a></li></ul>
 
     </footer>
   </div>
@@ -337,7 +145,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/07/28/Build-personal-blog-by-hexo/" data-id="cjqlv4zo50001oj6i3o2py5r7" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/07/28/Build-personal-blog-by-hexo/" data-id="cjqlxsune0000rb6i7v5pebpq" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/博客/">博客</a></li></ul>
@@ -385,7 +193,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/07/27/use-gitolite-to-manage-project/" data-id="cjqlv4zos0008oj6ijqoiu9sc" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/07/27/use-gitolite-to-manage-project/" data-id="cjqlxsunk0002rb6i1nrw169c" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git相关/">Git相关</a></li></ul>
@@ -410,7 +218,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git相关/">Git相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Leanback/">Leanback</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/博客/">博客</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/杂谈/">杂谈</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git相关/">Git相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/博客/">博客</a></li></ul>
     </div>
   </div>
 
@@ -420,7 +228,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/Git相关/" style="font-size: 10px;">Git相关</a> <a href="/tags/Leanback/" style="font-size: 15px;">Leanback</a> <a href="/tags/博客/" style="font-size: 10px;">博客</a> <a href="/tags/杂谈/" style="font-size: 10px;">杂谈</a>
+      <a href="/tags/Android/" style="font-size: 10px;">Android</a> <a href="/tags/Git相关/" style="font-size: 10px;">Git相关</a> <a href="/tags/博客/" style="font-size: 10px;">博客</a>
     </div>
   </div>
 
@@ -442,23 +250,15 @@
       <ul>
         
           <li>
-            <a href="/2018/08/29/how-to-use-ImageCardView/">how to use ImageCardView</a>
-          </li>
-        
-          <li>
-            <a href="/2018/08/20/Construction-of-BrowseFragment/">Leanback实现TV开发教程之BrowseFragment</a>
-          </li>
-        
-          <li>
-            <a href="/2018/08/06/introduce-how-to-build-Android-TV-Applications/">Leanback实现TV开发教程之简介</a>
-          </li>
-        
-          <li>
             <a href="/2018/08/04/TextClock-for-Time/">时间控件TextClock</a>
           </li>
         
           <li>
-            <a href="/2018/08/01/Glory-of-Kings/">对王者荣耀的爱与恨</a>
+            <a href="/2018/07/28/Build-personal-blog-by-hexo/">Hexo搭建个人博客</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/27/use-gitolite-to-manage-project/">使用gitolite搭建Git服务器</a>
           </li>
         
       </ul>
