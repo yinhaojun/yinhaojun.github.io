@@ -13,7 +13,7 @@ timezone:
     
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://yoursite.com
+url: http://www.yhaojun.site
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -73,7 +73,7 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: landscape
+theme: ocean
 
 # Extensions
 #plugins:
@@ -88,5 +88,5 @@ theme: landscape
 ## Docs: https://hexo.io/docs/deployment.html
 deploy: 
   type: git
-  repo: git@47.93.29.206:yhj_publish_blog.git
+  repo: git@yhaojun.site:yhj_publish_blog.git
   branch: master
