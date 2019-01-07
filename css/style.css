@@ -1324,7 +1324,6 @@ img {
 }
 .article-entry .caption {
   color: color-grey;
-  display: block;
   font-size: 0.9em;
   margin-top: 0.5em;
   position: relative;
