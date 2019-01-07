@@ -1428,30 +1428,6 @@ img {
 .article-nav-title {
   font-size: inherit;
 }
-.article-tag {
-  position: absolute;
-  display: none;
-  background: #fff;
-  -webkit-border-radius: 0.4rem;
-  -moz-border-radius: 0.4rem;
-  border-radius: 0.4rem;
-  box-shadow: 1px 2px 10px rgba(0,0,0,0.2);
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  border-radius: 3px;
-  margin-left: -145px;
-  overflow: hidden;
-  z-index: 1;
-}
-.article-tag.on {
-  display: block;
-}
-.article-tag::before,
-.article-tag::after {
-  content: "";
-  display: table;
-  clear: both;
-}
 .article-share-box {
   position: absolute;
   display: none;
