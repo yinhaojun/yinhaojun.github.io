@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>Room概览 | 千里之行，始于足下</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Room 在 SQLite 上提供了一个抽象层，以便在充分利用 SQLite 的强大功能的同时，能够流畅地访问数据库。 处理大量结构化数据的应用可极大地受益于在本地保留这些数据，最常见的方法就是缓存相关数据。这样，当设备无法访问网络时，用户仍可在离线状态下浏览相应内容。之后设备重新连接到网络后，用户发起的所有内容更改都会同步到服务器。 注意：要在应用中使用 Room，请在应用的 build.gra">
+<meta name="keywords" content="Android,Jetpack,Room">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Room概览">
+<meta property="og:url" content="http://www.yhaojun.site/2020/01/07/Jetpack-Room/index.html">
+<meta property="og:site_name" content="千里之行，始于足下">
+<meta property="og:description" content="Room 在 SQLite 上提供了一个抽象层，以便在充分利用 SQLite 的强大功能的同时，能够流畅地访问数据库。 处理大量结构化数据的应用可极大地受益于在本地保留这些数据，最常见的方法就是缓存相关数据。这样，当设备无法访问网络时，用户仍可在离线状态下浏览相应内容。之后设备重新连接到网络后，用户发起的所有内容更改都会同步到服务器。 注意：要在应用中使用 Room，请在应用的 build.gra">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://www.yhaojun.site/2020/01/07/Jetpack-Room/Users/yhj/Documents/yhj_blog/source/_posts/Jetpack-Room/room_architecture.png">
+<meta property="og:updated_time" content="2020-01-07T12:01:33.320Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Room概览">
+<meta name="twitter:description" content="Room 在 SQLite 上提供了一个抽象层，以便在充分利用 SQLite 的强大功能的同时，能够流畅地访问数据库。 处理大量结构化数据的应用可极大地受益于在本地保留这些数据，最常见的方法就是缓存相关数据。这样，当设备无法访问网络时，用户仍可在离线状态下浏览相应内容。之后设备重新连接到网络后，用户发起的所有内容更改都会同步到服务器。 注意：要在应用中使用 Room，请在应用的 build.gra">
+<meta name="twitter:image" content="http://www.yhaojun.site/2020/01/07/Jetpack-Room/Users/yhj/Documents/yhj_blog/source/_posts/Jetpack-Room/room_architecture.png">
+  
+    <link rel="alternate" href="/atom.xml" title="千里之行，始于足下" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">千里之行，始于足下</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://www.yhaojun.site"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Jetpack-Room" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/01/07/Jetpack-Room/" class="article-date">
+  <time datetime="2020-01-07T04:28:14.000Z" itemprop="datePublished">2020-01-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Room概览
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Room 在 SQLite 上提供了一个抽象层，以便在充分利用 SQLite 的强大功能的同时，能够流畅地访问数据库。</p>
+<p>处理大量结构化数据的应用可极大地受益于在本地保留这些数据，最常见的方法就是缓存相关数据。这样，当设备无法访问网络时，用户仍可在离线状态下浏览相应内容。之后设备重新连接到网络后，用户发起的所有内容更改都会同步到服务器。</p>
+<p><strong>注意：要在应用中使用 Room，请在应用的 <code>build.gradle</code> 文件中声明 Room 依赖项。</strong></p>
+<h2 id="声明依赖项"><a href="#声明依赖项" class="headerlink" title="声明依赖项"></a>声明依赖项</h2><p>要添加 Room 的依赖项，您必须将 Google Maven 代码库添加到项目中。</p>
+<p>在应用或模块的 <code>build.gradle</code> 文件中添加所需工件的依赖项：</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">dependencies &#123;</span><br><span class="line">      <span class="keyword">def</span> room_version = <span class="string">"2.2.0-rc01"</span></span><br><span class="line"></span><br><span class="line">      implementation <span class="string">"androidx.room:room-runtime:$room_version"</span></span><br><span class="line">      annotationProcessor <span class="string">"androidx.room:room-compiler:$room_version"</span> <span class="comment">// For Kotlin use kapt instead of annotationProcessor</span></span><br><span class="line"></span><br><span class="line">      <span class="comment">// optional - Kotlin Extensions and Coroutines support for Room</span></span><br><span class="line">      implementation <span class="string">"androidx.room:room-ktx:$room_version"</span></span><br><span class="line"></span><br><span class="line">      <span class="comment">// optional - RxJava support for Room</span></span><br><span class="line">      implementation <span class="string">"androidx.room:room-rxjava2:$room_version"</span></span><br><span class="line"></span><br><span class="line">      <span class="comment">// optional - Guava support for Room, including Optional and ListenableFuture</span></span><br><span class="line">      implementation <span class="string">"androidx.room:room-guava:$room_version"</span></span><br><span class="line"></span><br><span class="line">      <span class="comment">// Test helpers</span></span><br><span class="line">      testImplementation <span class="string">"androidx.room:room-testing:$room_version"</span></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="配置编译器选项"><a href="#配置编译器选项" class="headerlink" title="配置编译器选项"></a>配置编译器选项</h2><p>Room 具有以下注解处理器选项：</p>
+<ul>
+<li><p><code>room.schemaLocation</code>：配置并启用将数据库架构导出到给定目录中的 JSON 文件的功能。</p>
+</li>
+<li><p><code>room.incremental</code>：启用 Gradle 增量注解处理器。</p>
+</li>
+<li><p><code>room.expandProjection</code>：配置 Room 以重写查询，使其顶部星形投影在展开后仅包含 DAO 方法返回类型中定义的列。</p>
+<p>以下代码段举例说明了如何配置这些选项：</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">android &#123;</span><br><span class="line">        ...</span><br><span class="line">        defaultConfig &#123;</span><br><span class="line">            ...</span><br><span class="line">            javaCompileOptions &#123;</span><br><span class="line">                annotationProcessorOptions &#123;</span><br><span class="line">                    arguments = [</span><br><span class="line">                        <span class="string">"room.schemaLocation"</span>:<span class="string">"$projectDir/schemas"</span>.toString(),</span><br><span class="line">                        <span class="string">"room.incremental"</span>:<span class="string">"true"</span>,</span><br><span class="line">                        <span class="string">"room.expandProjection"</span>:<span class="string">"true"</span>]</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="组件"><a href="#组件" class="headerlink" title="组件"></a>组件</h2><p>Room 包含 3 个主要组件：</p>
+<ol>
+<li><p><strong>Database</strong>：包含数据库持有者，并作为应用已保留的持久关系型数据的底层连接的主要接入点。</p>
+<p>使用<code>@Database</code>注释的类应满足以下条件：</p>
+<ul>
+<li>是扩展 <code>RoomDatabase</code>的抽象类</li>
+<li>在注释中添加与数据库关联的实体列表</li>
+<li>包含具有 0 个参数且返回使用 <code>@Dao</code>注释的类的抽象方法</li>
+</ul>
+<p>在运行时，您可以通过调用 <code>Room.databaseBuilder()</code>或 <code>Room.inMemoryDatabaseBuilder()</code>获取 <code>Database</code>的实例。</p>
+</li>
+<li><p><strong>Entity</strong>：表示数据库中的表。</p>
+</li>
+<li><strong>DAO</strong>：包含用于访问数据库的方法。</li>
+</ol>
+<p>应用使用 Room 数据库来获取与该数据库关联的数据访问对象 (DAO)。然后，应用使用每个 DAO 从数据库中获取实体，然后再将对这些实体的所有更改保存回数据库中。最后，应用使用实体来获取和设置与数据库中的表列相对应的值。</p>
+<p>Room 不同组件之间的关系如图 1 所示：</p>
+<p><img src="/2020/01/07/Jetpack-Room/Users/yhj/Documents/yhj_blog/source/_posts/Jetpack-Room/room_architecture.png" alt="**图 1.** Room 架构图"></p>
+<p>以下代码段包含具有一个实体和一个 DAO 的示例数据库配置。</p>
+<p>User</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Entity</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line">    <span class="meta">@PrimaryKey</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> uid;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@ColumnInfo</span>(name = <span class="string">"first_name"</span>)</span><br><span class="line">    <span class="keyword">public</span> String firstName;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@ColumnInfo</span>(name = <span class="string">"last_name"</span>)</span><br><span class="line">    <span class="keyword">public</span> String lastName;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>UserDao</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Dao</span></span><br><span class="line">   <span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">UserDao</span> </span>&#123;</span><br><span class="line">       <span class="meta">@Query</span>(<span class="string">"SELECT * FROM user"</span>)</span><br><span class="line">       <span class="function">List&lt;User&gt; <span class="title">getAll</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">       <span class="meta">@Query</span>(<span class="string">"SELECT * FROM user WHERE uid IN (:userIds)"</span>)</span><br><span class="line">       <span class="function">List&lt;User&gt; <span class="title">loadAllByIds</span><span class="params">(<span class="keyword">int</span>[] userIds)</span></span>;</span><br><span class="line"></span><br><span class="line">       <span class="meta">@Query</span>(<span class="string">"SELECT * FROM user WHERE first_name LIKE :first AND "</span> +</span><br><span class="line">              <span class="string">"last_name LIKE :last LIMIT 1"</span>)</span><br><span class="line">       <span class="function">User <span class="title">findByName</span><span class="params">(String first, String last)</span></span>;</span><br><span class="line"></span><br><span class="line">       <span class="meta">@Insert</span></span><br><span class="line">       <span class="function"><span class="keyword">void</span> <span class="title">insertAll</span><span class="params">(User... users)</span></span>;</span><br><span class="line"></span><br><span class="line">       <span class="meta">@Delete</span></span><br><span class="line">       <span class="function"><span class="keyword">void</span> <span class="title">delete</span><span class="params">(User user)</span></span>;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>AppDatabase</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Database</span>(entities = &#123;User.class&#125;, version = <span class="number">1</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">AppDatabase</span> <span class="keyword">extends</span> <span class="title">RoomDatabase</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> UserDao <span class="title">userDao</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>创建上述文件后，您可以使用以下代码获取已创建的数据库的实例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">AppDatabase db = Room.databaseBuilder(getApplicationContext(),</span><br><span class="line">        AppDatabase.class, <span class="string">"database-name"</span>).build();</span><br></pre></td></tr></table></figure>
+<p>注意：如果您的应用在单个进程中运行，则在实例化 <code>AppDatabase</code> 对象时应遵循单例设计模式。每个 <code>RoomDatabase</code>实例的成本相当高，而您几乎不需要在单个进程中访问多个实例。</p>
+<p><strong>单例实现</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Database</span>(entities = &#123;User.class&#125;, version = <span class="number">1</span>, exportSchema = <span class="keyword">false</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">UserRoomDatabase</span> <span class="keyword">extends</span> <span class="title">RoomDatabase</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> UserDao <span class="title">userDao</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">volatile</span> UserRoomDatabase INSTANCE;</span><br><span class="line">   <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> NUMBER_OF_THREADS = <span class="number">4</span>;</span><br><span class="line">   <span class="keyword">static</span> <span class="keyword">final</span> ExecutorService databaseWriteExecutor =</span><br><span class="line">        Executors.newFixedThreadPool(NUMBER_OF_THREADS);</span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">static</span> UserRoomDatabase <span class="title">getDatabase</span><span class="params">(<span class="keyword">final</span> Context context)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (INSTANCE == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">synchronized</span> (UserRoomDatabase.class) &#123;</span><br><span class="line">                <span class="keyword">if</span> (INSTANCE == <span class="keyword">null</span>) &#123;</span><br><span class="line">                    INSTANCE = Room.databaseBuilder(context.getApplicationContext(),</span><br><span class="line">                            UserRoomDatabase.class, <span class="string">"user_database"</span>)</span><br><span class="line">                        	.allowMainThreadQueries()<span class="comment">//允许在UI线程执行数据库操作</span></span><br><span class="line">                            .build();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> INSTANCE;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>以上实现了单例模式，可以在应用的Application通过UserRoomDatabase.getDatabase方法获取UserRoomDatabase的实例对象了。</p>
+<p>当用户得到UserRoomDatabase对象之后，就可以通过上面的userDao()方法获取UserDao对象，然后就可以执行UserDao中的方法对数据库进行更删改查等操作了。</p>
+<p>如果您的应用在多个进程中运行，请在数据库构建器调用中包含 <code>enableMultiInstanceInvalidation()</code>。这样，如果您在每个进程中都有一个 <code>AppDatabase</code> 实例，就可以在一个进程中使共享数据库文件失效，并且这种失效会自动传播到其他进程中的 <code>AppDatabase</code> 实例。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.yhaojun.site/2020/01/07/Jetpack-Room/" data-id="ck53x672g000wde6isi7oapzp" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Jetpack/">Jetpack</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Room/">Room</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/01/07/Jetpack-Navigation/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Jetpack Navigation
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/08/04/TextClock-for-Time/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">时间控件TextClock</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git相关/">Git相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jetpack/">Jetpack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Room/">Room</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/博客/">博客</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/Git相关/" style="font-size: 10px;">Git相关</a> <a href="/tags/Jetpack/" style="font-size: 16.67px;">Jetpack</a> <a href="/tags/Room/" style="font-size: 13.33px;">Room</a> <a href="/tags/博客/" style="font-size: 10px;">博客</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/01/07/Room-prepopulate/">预填充数据库</a>
+          </li>
+        
+          <li>
+            <a href="/2020/01/07/Room-accessing-data/">使用 Room DAO 访问数据</a>
+          </li>
+        
+          <li>
+            <a href="/2020/01/07/Room-relationships/">定义对象之间的关系</a>
+          </li>
+        
+          <li>
+            <a href="/2020/01/07/Room-defining-data/">使用 Room 实体定义数据</a>
+          </li>
+        
+          <li>
+            <a href="/2020/01/07/Jetpack-WorkManager/">Jetpack WorkManager</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 Victor.yin yhaojun.site <br><br>
+	 <img src="https://static.dy208.cn/o_1dfilp8ruo521thr1hvf18ji17soa.png"><a href="http://www.beian.miit.gov.cn/" style="color:#f72b07" target="_blank">粤ICP备18095074号</a><br>
+      <!-- Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> -->
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

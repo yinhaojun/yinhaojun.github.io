@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>预填充数据库 | 千里之行，始于足下</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Sometimes, you might want your app to start with a database that is already loaded with a specific set of data. This is called prepopulating a database. In Room 2.2.0 and higher, you can use API metho">
+<meta name="keywords" content="Android,Jetpack,Room">
+<meta property="og:type" content="article">
+<meta property="og:title" content="预填充数据库">
+<meta property="og:url" content="http://www.yhaojun.site/2020/01/07/Room-prepopulate/index.html">
+<meta property="og:site_name" content="千里之行，始于足下">
+<meta property="og:description" content="Sometimes, you might want your app to start with a database that is already loaded with a specific set of data. This is called prepopulating a database. In Room 2.2.0 and higher, you can use API metho">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2020-01-07T13:38:02.663Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="预填充数据库">
+<meta name="twitter:description" content="Sometimes, you might want your app to start with a database that is already loaded with a specific set of data. This is called prepopulating a database. In Room 2.2.0 and higher, you can use API metho">
+  
+    <link rel="alternate" href="/atom.xml" title="千里之行，始于足下" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">千里之行，始于足下</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://www.yhaojun.site"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Room-prepopulate" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/01/07/Room-prepopulate/" class="article-date">
+  <time datetime="2020-01-07T12:53:39.000Z" itemprop="datePublished">2020-01-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      预填充数据库
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Sometimes, you might want your app to start with a database that is already loaded with a specific set of data. This is called prepopulating a database. In Room 2.2.0 and higher, you can use API methods to prepopulate a Room database at initialization with contents from a prepackaged database file in the device’s file system.</p>
+<p>有时，您可能希望您的应用程序从已经加载了一组特定数据的数据库开始， 这称为预填充数据库。 在Room 2.2.0及更高版本中，可以使用API方法在初始化时使用设备文件系统中预打包的数据库文件中的内容预填充Room数据库。</p>
+<p><strong><em>注意：通过<code>Room.inMemoryDatabaseBuilder()</code>得到的数据库不支持使用<code>createFromAsset()</code>或<code>createFromFile()</code>预填充数据库。</em></strong></p>
+<h2 id="从asset预填充"><a href="#从asset预填充" class="headerlink" title="从asset预填充"></a>从asset预填充</h2><p>要从位于应用程序<code>asset/</code>目录中任何位置的预打包数据库文件中预填充Room数据库，请在调用build()之前从RoomDatabase.Builder对象中调用<code>createFromAsset()</code>方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Room.databaseBuilder(appContext, AppDatabase.class, &quot;Sample.db&quot;)</span><br><span class="line">    .createFromAsset(&quot;database/myapp.db&quot;)</span><br><span class="line">    .build();</span><br></pre></td></tr></table></figure>
+<p><code>createFromAsset()</code>方法接受一个字符串参数，该参数包含从assets /目录到预打包数据库文件的相对路径。</p>
+<p>Note: When prepopulating from an asset, Room validates the database to ensure that its schema matches the schema of the prepackaged database. You should export your database’s schema to use as a reference as you create the prepackaged database file.</p>
+<p><strong><em>注意：从<code>asset</code>预填充时，Room会验证数据库，以确保其结构与预打包数据库的结构(schema)匹配。 创建预打包的数据库文件时，应导出数据库的结构以用作参考。Schema，指的是一组DDL语句集，该语句集完整地描述了数据库的结构。</em></strong></p>
+<h2 id="从文件系统中预填充"><a href="#从文件系统中预填充" class="headerlink" title="从文件系统中预填充"></a>从文件系统中预填充</h2><p>要从位于设备文件系统中除应用程序<code>asset/</code>目录之外的任何位置的预打包数据库文件中预填充Room数据库，请在调用build（）之前从RoomDatabase.Builder对象中调用<code>createFromFile()</code>方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Room.databaseBuilder(appContext, AppDatabase.class, &quot;Sample.db&quot;)</span><br><span class="line">    .createFromFile(new File(&quot;mypath&quot;))</span><br><span class="line">    .build();</span><br></pre></td></tr></table></figure>
+<p><code>createFromFile()</code>方法接受预打包数据库文件的File参数。 Room会创建指定文件的副本，而不是直接打开它，因此请确保您的应用对文件具有读取权限。</p>
+<h2 id="处理包括预打包数据库的迁移"><a href="#处理包括预打包数据库的迁移" class="headerlink" title="处理包括预打包数据库的迁移"></a>处理包括预打包数据库的迁移</h2><p>预打包的数据库文件还可以更改Room数据库处理回退迁移的方式。 通常，启用破坏性迁移后，Room必须执行没有迁移路径的迁移，Room会删除数据库中的所有表，并为目标版本创建具有指定架构的空数据库。 但是，如果包括与目标版本号相同的预打包数据库文件，Room会在执行破坏性迁移后尝试使用预打包数据库文件的内容填充新创建的数据库。</p>
+<p>下面的内容提供了一些如何在实践中工作的示例。</p>
+<h4 id="示例：使用预打包的数据库进行回退迁移"><a href="#示例：使用预打包的数据库进行回退迁移" class="headerlink" title="示例：使用预打包的数据库进行回退迁移"></a>示例：使用预打包的数据库进行回退迁移</h4><p>假设以下内容：</p>
+<ul>
+<li>您在应用上定义了Room数据库，版本为3</li>
+<li>​     设备上已安装的数据库实例为版本2</li>
+<li>​     预打包的数据库文件的版本为3</li>
+<li>​     从版本2到版本3没有实现的迁移路径</li>
+<li>​     破坏性迁移(<strong>Destructive migrations</strong>)已启用。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">// 定义数据库的版本是 3.</span><br><span class="line">@Database(version = 3)</span><br><span class="line">public abstract class AppDatabase extends RoomDatabase &#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 启用Destructive migrations并提供了预打包的数据myapp.db</span><br><span class="line">Room.databaseBuilder(appContext, AppDatabase.class, &quot;Sample.db&quot;)</span><br><span class="line">    .createFromAsset(&quot;database/myapp.db&quot;)</span><br><span class="line">    .fallbackToDestructiveMigration()</span><br><span class="line">    .build();</span><br></pre></td></tr></table></figure>
+<p>在这种情况下会发生以下情况：</p>
+<ul>
+<li>由于您的应用程序中定义的数据库为版本3，而设备上已安装的数据库实例为版本2，因此必须进行迁移</li>
+<li>由于没有从版本2到版本3的已实施迁移计划，因此迁移是回退迁移。</li>
+<li>因为调用fallbackToDestructiveMigration()构建器方法，所以回退迁移是破坏性的。 Room会删除设备上已安装的数据库实例。</li>
+<li>由于预打包的数据库文件的版本为3，因此Room会重新创建数据库并使用预打包的数据库文件的内容填充它。 另一方面，如果您预打包的数据库文件位于版本2上，则Room将注意该文件与目标版本不匹配，因此不会将其用作回退迁移的一部分（也就是不会将预打包数据库的内容填充到新的数据库中）。</li>
+</ul>
+<h4 id="示例：使用预打包的数据库实施迁移"><a href="#示例：使用预打包的数据库实施迁移" class="headerlink" title="示例：使用预打包的数据库实施迁移"></a>示例：使用预打包的数据库实施迁移</h4><p>假设您的应用实现了从版本2到版本3的迁移路径：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">// Database class definition declaring version 3.</span><br><span class="line">@Database(version = 3)</span><br><span class="line">public abstract class AppDatabase extends RoomDatabase &#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// Migration path definition from version 2 to version 3.</span><br><span class="line">static final Migration MIGRATION_2_3 = new Migration(2, 3) &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public void migrate(SupportSQLiteDatabase database) &#123;</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">// A prepackaged database is provided.</span><br><span class="line">Room.databaseBuilder(appContext, AppDatabase.class, &quot;Sample.db&quot;)</span><br><span class="line">    .createFromAsset(&quot;database/myapp.db&quot;)</span><br><span class="line">    .addMigrations(MIGRATION_2_3)</span><br><span class="line">    .build();</span><br></pre></td></tr></table></figure>
+<p>在这种情况下会发生以下情况：</p>
+<ul>
+<li>由于您的应用程序中定义的数据库为版本3，而设备上已安装的数据库为版本2，因此必须进行迁移</li>
+<li>由于存在从版本2到版本3的已实现迁移路径，因此Room运行定义的migration（）方法将设备上的数据库实例更新到版本3，从而保留数据库中已经存在的数据。 Room不使用预打包的数据库文件，因为Room仅在回退迁移的情况下才使用预打包的数据库文件</li>
+</ul>
+<h4 id="示例：使用预打包的数据库进行多步迁移"><a href="#示例：使用预打包的数据库进行多步迁移" class="headerlink" title="示例：使用预打包的数据库进行多步迁移"></a>示例：使用预打包的数据库进行多步迁移</h4><p>预打包数据库文件还可能影响包含多个步骤的迁移。 考虑以下情况：</p>
+<ul>
+<li>您在应用上定义了Room数据库版本为4</li>
+<li>设备上已安装的数据库实例为版本2</li>
+<li>预打包数据库文件的版本为3</li>
+<li>从版本3到版本4有一个已实现的迁移路径，但没有从版本2到版本3的迁移路径</li>
+<li>破坏性迁移已启用</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">// Database class definition declaring version 4.</span><br><span class="line">@Database(version = 4)</span><br><span class="line">public abstract class AppDatabase extends RoomDatabase &#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// Migration path definition from version 3 to version 4.</span><br><span class="line">static final Migration MIGRATION_3_4 = new Migration(3, 4) &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public void migrate(SupportSQLiteDatabase database) &#123;</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">// Destructive migrations are enabled and a prepackaged database is</span><br><span class="line">// provided.</span><br><span class="line">Room.databaseBuilder(appContext, AppDatabase.class, &quot;Sample.db&quot;)</span><br><span class="line">    .createFromAsset(&quot;database/myapp.db&quot;)</span><br><span class="line">    .addMigrations(MIGRATION_3_4)</span><br><span class="line">    .fallbackToDestructiveMigration()</span><br><span class="line">    .build();</span><br></pre></td></tr></table></figure>
+<p>在这种情况下会发生以下情况：</p>
+<ul>
+<li>由于您的应用程序中定义的数据库为版本4，而设备上已安装的数据库实例为版本2，因此必须进行迁移</li>
+<li>由于没有从版本2到版本3的已实现迁移路径，因此迁移是回退迁移</li>
+<li>因为调用fallbackToDestructiveMigration（）构建器方法，所以回退迁移是破坏性的。 Room将设备上的数据库实例删除</li>
+<li>由于预打包数据库文件的版本为3，因此Room会重新创建数据库并使用预打包的数据库文件的内容填充它</li>
+<li>设备上安装的数据库现在的版本为3。由于它仍低于应用程序中定义的版本，因此必须进行另一次迁移</li>
+<li>由于存在从版本3到版本4的已实现迁移路径，因此Room运行定义的<code>migration()</code>方法将设备上的数据库实例更新到版本4，从而保留从版本3预打包的数据库文件复制过来的数据。</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.yhaojun.site/2020/01/07/Room-prepopulate/" data-id="ck53x66zb0006de6ifrfzxmkq" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Jetpack/">Jetpack</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Room/">Room</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2020/01/07/Room-accessing-data/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">使用 Room DAO 访问数据</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git相关/">Git相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jetpack/">Jetpack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Room/">Room</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/博客/">博客</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/Git相关/" style="font-size: 10px;">Git相关</a> <a href="/tags/Jetpack/" style="font-size: 16.67px;">Jetpack</a> <a href="/tags/Room/" style="font-size: 13.33px;">Room</a> <a href="/tags/博客/" style="font-size: 10px;">博客</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/01/07/Room-prepopulate/">预填充数据库</a>
+          </li>
+        
+          <li>
+            <a href="/2020/01/07/Room-accessing-data/">使用 Room DAO 访问数据</a>
+          </li>
+        
+          <li>
+            <a href="/2020/01/07/Room-relationships/">定义对象之间的关系</a>
+          </li>
+        
+          <li>
+            <a href="/2020/01/07/Room-defining-data/">使用 Room 实体定义数据</a>
+          </li>
+        
+          <li>
+            <a href="/2020/01/07/Jetpack-WorkManager/">Jetpack WorkManager</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 Victor.yin yhaojun.site <br><br>
+	 <img src="https://static.dy208.cn/o_1dfilp8ruo521thr1hvf18ji17soa.png"><a href="http://www.beian.miit.gov.cn/" style="color:#f72b07" target="_blank">粤ICP备18095074号</a><br>
+      <!-- Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> -->
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

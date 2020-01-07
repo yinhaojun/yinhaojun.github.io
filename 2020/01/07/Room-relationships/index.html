@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>定义对象之间的关系 | 千里之行，始于足下</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="由于 SQLite 是关系型数据库，因此您可以指定各个对象之间的关系。尽管大多数对象关系映射库都允许实体对象互相引用，但 Room 明确禁止这样做。 定义一对多关系即使您不能使用直接关系，Room 仍允许您定义实体之间的外键约束。 例如，如果存在另一个名为 Book 的实体，您可以使用 @ForeignKey注释定义该实体与 User 实体的关系，如以下代码段所示： 12345678910@Ent">
+<meta name="keywords" content="Android,Jetpack,Room">
+<meta property="og:type" content="article">
+<meta property="og:title" content="定义对象之间的关系">
+<meta property="og:url" content="http://www.yhaojun.site/2020/01/07/Room-relationships/index.html">
+<meta property="og:site_name" content="千里之行，始于足下">
+<meta property="og:description" content="由于 SQLite 是关系型数据库，因此您可以指定各个对象之间的关系。尽管大多数对象关系映射库都允许实体对象互相引用，但 Room 明确禁止这样做。 定义一对多关系即使您不能使用直接关系，Room 仍允许您定义实体之间的外键约束。 例如，如果存在另一个名为 Book 的实体，您可以使用 @ForeignKey注释定义该实体与 User 实体的关系，如以下代码段所示： 12345678910@Ent">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2020-01-07T12:01:40.986Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="定义对象之间的关系">
+<meta name="twitter:description" content="由于 SQLite 是关系型数据库，因此您可以指定各个对象之间的关系。尽管大多数对象关系映射库都允许实体对象互相引用，但 Room 明确禁止这样做。 定义一对多关系即使您不能使用直接关系，Room 仍允许您定义实体之间的外键约束。 例如，如果存在另一个名为 Book 的实体，您可以使用 @ForeignKey注释定义该实体与 User 实体的关系，如以下代码段所示： 12345678910@Ent">
+  
+    <link rel="alternate" href="/atom.xml" title="千里之行，始于足下" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">千里之行，始于足下</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://www.yhaojun.site"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Room-relationships" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/01/07/Room-relationships/" class="article-date">
+  <time datetime="2020-01-07T08:24:21.000Z" itemprop="datePublished">2020-01-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      定义对象之间的关系
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>由于 SQLite 是关系型数据库，因此您可以指定各个对象之间的关系。尽管大多数对象关系映射库都允许实体对象互相引用，但 Room 明确禁止这样做。</p>
+<h2 id="定义一对多关系"><a href="#定义一对多关系" class="headerlink" title="定义一对多关系"></a>定义一对多关系</h2><p>即使您不能使用直接关系，Room 仍允许您定义实体之间的外键约束。</p>
+<p>例如，如果存在另一个名为 <code>Book</code> 的实体，您可以使用 <code>@ForeignKey</code>注释定义该实体与 <code>User</code> 实体的关系，如以下代码段所示：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Entity</span>(foreignKeys = <span class="meta">@ForeignKey</span>(entity = User.class,</span><br><span class="line">                                      parentColumns = <span class="string">"id"</span>,</span><br><span class="line">                                      childColumns = <span class="string">"user_id"</span>))</span><br><span class="line">    <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Book</span> </span>&#123;</span><br><span class="line">        <span class="meta">@PrimaryKey</span> <span class="keyword">public</span> <span class="keyword">int</span> bookId;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">public</span> String title;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@ColumnInfo</span>(name = <span class="string">"user_id"</span>) <span class="keyword">public</span> <span class="keyword">int</span> userId;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>由于零个或更多个 <code>Book</code> 实例可以通过 <code>user_id</code> 外键关联到一个 <code>User</code> 实例，因此这会在 <code>User</code> 和 <code>Book</code> 之间构建一对多关系模型。</p>
+<p>外键非常强大，可让您指定引用的实体更新后会发生什么。例如，您可以通过在 <code>@ForeignKey</code>注释中添加 <code>onDelete = CASCADE</code>，在 <code>User</code> 的对应实例删除后告知 SQLite 删除该用户的所有图书。</p>
+<p><strong><em>注意：SQLite 将 <code>@Insert(onConflict = REPLACE)</code>作为一组 <code>REMOVE</code> 和 <code>REPLACE</code> 操作（而不是单个 <code>UPDATE</code> 操作）处理。这种替换冲突值的方法可能会影响您的外键约束。</em></strong></p>
+<h2 id="创建嵌套对象"><a href="#创建嵌套对象" class="headerlink" title="创建嵌套对象"></a>创建嵌套对象</h2><p>有时，您可能希望在数据库逻辑中将某个实体或数据对象表示为一个紧密的整体，即使该对象包含多个字段也是如此。在这些情况下，您可以使用 <code>@Embedded</code>注释表示要解构到表中其子字段的对象。然后，您可以像查询其他各个列一样查询嵌套字段。</p>
+<p>例如，您的 <code>User</code> 类可以包含类型 <code>Address</code> 的字段，该类型表示一组分别名为 <code>street</code>、<code>city</code>、<code>state</code> 和 <code>postCode</code> 的字段。要在表中单独存储组成的列，请在 <code>User</code> 类（使用<code>@Embedded</code>注释）中添加 <code>Address</code> 字段，如以下代码段所示：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Address</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> String street;</span><br><span class="line">    <span class="keyword">public</span> String state;</span><br><span class="line">    <span class="keyword">public</span> String city;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@ColumnInfo</span>(name = <span class="string">"post_code"</span>) <span class="keyword">public</span> <span class="keyword">int</span> postCode;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Entity</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line">    <span class="meta">@PrimaryKey</span> <span class="keyword">public</span> <span class="keyword">int</span> id;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> String firstName;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Embedded</span> <span class="keyword">public</span> Address address;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后，表示 <code>User</code> 对象的表会包含具有以下名称的列：<code>id</code>、<code>firstName</code>、<code>street</code>、<code>state</code>、<code>city</code> 和 <code>post_code</code>。</p>
+<p><strong>注意：嵌套字段还可以包含其他嵌套字段。</strong></p>
+<p>如果某个实体具有同一类型的多个嵌套字段，您可以通过设置<code>prefix</code>属性确保每个列都独一无二。然后，Room 会将提供的值添加到嵌套对象中每个列名称的开头。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">For the example above, <span class="keyword">if</span> we<span class="string">'ve written:</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">   @Embedded(prefix = "loc_")</span></span><br><span class="line"><span class="string">   Coordinates coordinates;</span></span><br><span class="line"><span class="string"> </span></span><br><span class="line"><span class="string">The column names for latitude and longitude will be loc_latitude and loc_longitude respectively.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">By default, prefix is the empty string.</span></span><br></pre></td></tr></table></figure>
+<h2 id="定义多对多关系"><a href="#定义多对多关系" class="headerlink" title="定义多对多关系"></a>定义多对多关系</h2><p>您通常希望在关系型数据库中构建的另一种关系模型是两个实体之间的多对多关系，其中每个实体都可以关联到另一个实体的零个或更多个实例。例如，假设有一个音乐在线播放应用，用户可以在该应用中将自己喜爱的歌曲整理到播放列表中。每个播放列表都可以包含任意数量的歌曲，每首歌曲都可以包含在任意数量的播放列表中。</p>
+<p>要构建这种关系的模型，您需要创建下面三个对象：</p>
+<ul>
+<li>播放列表的实体类</li>
+<li>歌曲的实体类</li>
+<li>用于保存每个播放列表中的歌曲相关信息的中间类</li>
+</ul>
+<p>您可以将实体类定义为独立单元：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Entity</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Playlist</span> </span>&#123;</span><br><span class="line">    <span class="meta">@PrimaryKey</span> <span class="keyword">public</span> <span class="keyword">int</span> id;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> String name;</span><br><span class="line">    <span class="keyword">public</span> String description;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Entity</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Song</span> </span>&#123;</span><br><span class="line">    <span class="meta">@PrimaryKey</span> <span class="keyword">public</span> <span class="keyword">int</span> id;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> String songName;</span><br><span class="line">    <span class="keyword">public</span> String artistName;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后，将中间类定义为包含对 <code>Song</code> 和 <code>Playlist</code> 的外键引用的实体：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Entity</span>(tableName = <span class="string">"playlist_song_join"</span>,</span><br><span class="line">        primaryKeys = &#123; <span class="string">"playlistId"</span>, <span class="string">"songId"</span> &#125;,</span><br><span class="line">        foreignKeys = &#123;</span><br><span class="line">                <span class="meta">@ForeignKey</span>(entity = Playlist.class,</span><br><span class="line">                            parentColumns = <span class="string">"id"</span>,</span><br><span class="line">                            childColumns = <span class="string">"playlistId"</span>),</span><br><span class="line">                <span class="meta">@ForeignKey</span>(entity = Song.class,</span><br><span class="line">                            parentColumns = <span class="string">"id"</span>,</span><br><span class="line">                            childColumns = <span class="string">"songId"</span>)</span><br><span class="line">                &#125;)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PlaylistSongJoin</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> playlistId;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> songId;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这会生成一个多对多关系模型。借助该模型，您可以使用 DAO 按歌曲查询播放列表和按播放列表查询歌曲：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Dao</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">PlaylistSongJoinDao</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Insert</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">insert</span><span class="params">(PlaylistSongJoin playlistSongJoin)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Query</span>(<span class="string">"SELECT * FROM playlist "</span> +</span><br><span class="line">           <span class="string">"INNER JOIN playlist_song_join "</span> +</span><br><span class="line">           <span class="string">"ON playlist.id=playlist_song_join.playlistId "</span> +</span><br><span class="line">           <span class="string">"WHERE playlist_song_join.songId=:songId"</span>)</span><br><span class="line">    <span class="function">List&lt;Playlist&gt; <span class="title">getPlaylistsForSong</span><span class="params">(<span class="keyword">final</span> <span class="keyword">int</span> songId)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Query</span>(<span class="string">"SELECT * FROM song "</span> +</span><br><span class="line">           <span class="string">"INNER JOIN playlist_song_join "</span> +</span><br><span class="line">           <span class="string">"ON song.id=playlist_song_join.songId "</span> +</span><br><span class="line">           <span class="string">"WHERE playlist_song_join.playlistId=:playlistId"</span>)</span><br><span class="line">    <span class="function">List&lt;Song&gt; <span class="title">getSongsForPlaylist</span><span class="params">(<span class="keyword">final</span> <span class="keyword">int</span> playlistId)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.yhaojun.site/2020/01/07/Room-relationships/" data-id="ck53x672k0011de6idwzu0rtt" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Jetpack/">Jetpack</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Room/">Room</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/01/07/Room-accessing-data/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          使用 Room DAO 访问数据
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/01/07/Room-defining-data/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">使用 Room 实体定义数据</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git相关/">Git相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jetpack/">Jetpack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Room/">Room</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/博客/">博客</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/Git相关/" style="font-size: 10px;">Git相关</a> <a href="/tags/Jetpack/" style="font-size: 16.67px;">Jetpack</a> <a href="/tags/Room/" style="font-size: 13.33px;">Room</a> <a href="/tags/博客/" style="font-size: 10px;">博客</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/01/07/Room-prepopulate/">预填充数据库</a>
+          </li>
+        
+          <li>
+            <a href="/2020/01/07/Room-accessing-data/">使用 Room DAO 访问数据</a>
+          </li>
+        
+          <li>
+            <a href="/2020/01/07/Room-relationships/">定义对象之间的关系</a>
+          </li>
+        
+          <li>
+            <a href="/2020/01/07/Room-defining-data/">使用 Room 实体定义数据</a>
+          </li>
+        
+          <li>
+            <a href="/2020/01/07/Jetpack-WorkManager/">Jetpack WorkManager</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 Victor.yin yhaojun.site <br><br>
+	 <img src="https://static.dy208.cn/o_1dfilp8ruo521thr1hvf18ji17soa.png"><a href="http://www.beian.miit.gov.cn/" style="color:#f72b07" target="_blank">粤ICP备18095074号</a><br>
+      <!-- Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> -->
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
