@@ -7,18 +7,18 @@
   
   <title>预填充数据库 | 千里之行，始于足下</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Sometimes, you might want your app to start with a database that is already loaded with a specific set of data. This is called prepopulating a database. In Room 2.2.0 and higher, you can use API metho">
+  <meta name="description" content="有时，您可能希望您的应用程序从已经加载了一组特定数据的数据库开始， 这称为预填充数据库。 在Room 2.2.0及更高版本中，可以使用API方法在初始化时使用设备文件系统中预打包的数据库文件中的内容预填充Room数据库。 注意：通过Room.inMemoryDatabaseBuilder()得到的数据库不支持使用createFromAsset()或createFromFile()预填充数据库。 从">
 <meta name="keywords" content="Android,Jetpack,Room">
 <meta property="og:type" content="article">
 <meta property="og:title" content="预填充数据库">
 <meta property="og:url" content="http://www.yhaojun.site/2020/01/07/Room-prepopulate/index.html">
 <meta property="og:site_name" content="千里之行，始于足下">
-<meta property="og:description" content="Sometimes, you might want your app to start with a database that is already loaded with a specific set of data. This is called prepopulating a database. In Room 2.2.0 and higher, you can use API metho">
+<meta property="og:description" content="有时，您可能希望您的应用程序从已经加载了一组特定数据的数据库开始， 这称为预填充数据库。 在Room 2.2.0及更高版本中，可以使用API方法在初始化时使用设备文件系统中预打包的数据库文件中的内容预填充Room数据库。 注意：通过Room.inMemoryDatabaseBuilder()得到的数据库不支持使用createFromAsset()或createFromFile()预填充数据库。 从">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2020-01-07T13:38:02.663Z">
+<meta property="og:updated_time" content="2020-01-07T13:47:14.934Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="预填充数据库">
-<meta name="twitter:description" content="Sometimes, you might want your app to start with a database that is already loaded with a specific set of data. This is called prepopulating a database. In Room 2.2.0 and higher, you can use API metho">
+<meta name="twitter:description" content="有时，您可能希望您的应用程序从已经加载了一组特定数据的数据库开始， 这称为预填充数据库。 在Room 2.2.0及更高版本中，可以使用API方法在初始化时使用设备文件系统中预打包的数据库文件中的内容预填充Room数据库。 注意：通过Room.inMemoryDatabaseBuilder()得到的数据库不支持使用createFromAsset()或createFromFile()预填充数据库。 从">
   
     <link rel="alternate" href="/atom.xml" title="千里之行，始于足下" type="application/atom+xml">
   
@@ -87,8 +87,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Sometimes, you might want your app to start with a database that is already loaded with a specific set of data. This is called prepopulating a database. In Room 2.2.0 and higher, you can use API methods to prepopulate a Room database at initialization with contents from a prepackaged database file in the device’s file system.</p>
-<p>有时，您可能希望您的应用程序从已经加载了一组特定数据的数据库开始， 这称为预填充数据库。 在Room 2.2.0及更高版本中，可以使用API方法在初始化时使用设备文件系统中预打包的数据库文件中的内容预填充Room数据库。</p>
+        <p>有时，您可能希望您的应用程序从已经加载了一组特定数据的数据库开始， 这称为预填充数据库。 在Room 2.2.0及更高版本中，可以使用API方法在初始化时使用设备文件系统中预打包的数据库文件中的内容预填充Room数据库。</p>
 <p><strong><em>注意：通过<code>Room.inMemoryDatabaseBuilder()</code>得到的数据库不支持使用<code>createFromAsset()</code>或<code>createFromFile()</code>预填充数据库。</em></strong></p>
 <h2 id="从asset预填充"><a href="#从asset预填充" class="headerlink" title="从asset预填充"></a>从asset预填充</h2><p>要从位于应用程序<code>asset/</code>目录中任何位置的预打包数据库文件中预填充Room数据库，请在调用build()之前从RoomDatabase.Builder对象中调用<code>createFromAsset()</code>方法：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Room.databaseBuilder(appContext, AppDatabase.class, &quot;Sample.db&quot;)</span><br><span class="line">    .createFromAsset(&quot;database/myapp.db&quot;)</span><br><span class="line">    .build();</span><br></pre></td></tr></table></figure>
@@ -145,7 +144,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.yhaojun.site/2020/01/07/Room-prepopulate/" data-id="ck53x66zb0006de6ifrfzxmkq" class="article-share-link">Share</a>
+      <a data-url="http://www.yhaojun.site/2020/01/07/Room-prepopulate/" data-id="ck54lth3a0019v56iw04sb94r" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Jetpack/">Jetpack</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Room/">Room</a></li></ul>
