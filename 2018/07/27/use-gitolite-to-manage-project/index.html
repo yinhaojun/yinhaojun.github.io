@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang="">
+<html class="theme-next gemini use-motion" lang="">
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="千里之行，始于足下">
 <meta property="og:description" content="前言2018年4月底入职一家研发智能机顶盒的公司，7月中旬一位大神离职了，然后进行工作交接，其中就涉及到了如何利用Gitolite管理项目。Git操作使用的很多，但是如何搭建Git服务器以及如何进行管理却还没有接触过，因此利用闲暇时间摸索了下并记录下来~~我个人买了个阿里云的服务器，一年是293￥，其实也不算贵了。 主要原因是：  这毕竟是自己个人学习的内容，当然不能直接在公司服务器进行测试了；">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-01-07T04:13:05.808Z">
+<meta property="og:updated_time" content="2020-01-08T02:32:48.229Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用gitolite搭建Git服务器">
 <meta name="twitter:description" content="前言2018年4月底入职一家研发智能机顶盒的公司，7月中旬一位大神离职了，然后进行工作交接，其中就涉及到了如何利用Gitolite管理项目。Git操作使用的很多，但是如何搭建Git服务器以及如何进行管理却还没有接触过，因此利用闲暇时间摸索了下并记录下来~~我个人买了个阿里云的服务器，一年是293￥，其实也不算贵了。 主要原因是：  这毕竟是自己个人学习的内容，当然不能直接在公司服务器进行测试了；">
@@ -98,7 +98,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Muse',
+    scheme: 'Gemini',
     version: '5.1.4',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
@@ -191,12 +191,32 @@
         </li>
       
         
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>
+            
+            Commonweal 404
           </a>
         </li>
       
@@ -332,25 +352,19 @@
 </tbody>
 </table>
 <p>默认情况下服务器只有root用户，直接用root进行操作肯定是不安全的，因此需要额外新增两个账户。一个用来存放Git仓库（用户名为git），一个用来进行Git用户管理（用户名为git_admin）。</p>
-<pre><code>useradd git -m //添加git用户
-passwd git//设置git用户的登陆密码
-
-useradd git_admin -m //添加git_admin用户
-passwd git_admin //设置git_admin的登陆密码 
-</code></pre><h2 id="安装软件"><a href="#安装软件" class="headerlink" title="安装软件"></a>安装软件</h2><p><strong>安装Git</strong></p>
-<pre><code>sudo apt-get update//更新软件源
-sudo apt-get install git
-</code></pre><p><strong>生成sshkey</strong><br>切换到git_admin用户下，然后执行ssh-keygen生成sshkey，具体操作如下：</p>
-<pre><code>sudo su git_admin//切换到git_admin
-ssh-keygen -t rsa -C &quot;example@email.com&quot;
-</code></pre><p>这时候一直按回车就可以了，在你的根目录下就会生成.ssh文件夹，你可以通过<strong>ls -al</strong>来进行查看！将.ssh<br>文件夹下的id_rsa.pub文件拷贝到/tmp目录下备用。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp ~/.ssh/id_rsa.pub /tmp</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">useradd git -m //添加git用户</span><br><span class="line">passwd git//设置git用户的登陆密码</span><br><span class="line"></span><br><span class="line">useradd git_admin -m //添加git_admin用户</span><br><span class="line">passwd git_admin //设置git_admin的登陆密码</span><br></pre></td></tr></table></figure>
+<h2 id="安装软件"><a href="#安装软件" class="headerlink" title="安装软件"></a>安装软件</h2><p><strong>安装Git</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update//更新软件源</span><br><span class="line">sudo apt-get install git</span><br></pre></td></tr></table></figure>
+<p><strong>生成sshkey</strong><br>切换到git_admin用户下，然后执行ssh-keygen生成sshkey，具体操作如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo su git_admin//切换到git_admin</span><br><span class="line">ssh-keygen -t rsa -C "example@email.com"</span><br></pre></td></tr></table></figure>
+<p>这时候一直按回车就可以了，在你的根目录下就会生成.ssh文件夹，你可以通过<strong>ls -al</strong>来进行查看！将.ssh<br>文件夹下的id_rsa.pub文件拷贝到/tmp目录下备用。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp ~/.ssh/id_rsa.pub /tmp</span><br></pre></td></tr></table></figure>
 <p><strong>安装gitolite</strong><br>切换到git用户，并新建bin目录，操作如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">su git //切换到git用户</span><br><span class="line">cd ~ //进入git用户目录</span><br><span class="line">mkdir bin//新建bin文件夹&apos;</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">su git //切换到git用户</span><br><span class="line">cd ~ //进入git用户目录</span><br><span class="line">mkdir bin//新建bin文件夹'</span><br></pre></td></tr></table></figure>
 <p>下载gitolite代码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone http://github.com/sitaramc/gitolite</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone http://github.com/sitaramc/gitolite</span><br></pre></td></tr></table></figure>
 <p>安装gitolite到bin目录</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$&#123;HOME&#125;/gitolite/install -to $&#123;HOME&#125;/bin</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span>&#123;HOME&#125;/gitolite/install -to $&#123;HOME&#125;/bin</span><br></pre></td></tr></table></figure>
 <p>设置管理员ssh key</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$&#123;HOME&#125;/bin/gitolite setup -pk /tmp/id_rsa.pub</span><br></pre></td></tr></table></figure>
 <p>执行上面的步骤后，在git的根目录下会生成<strong>projects.list</strong>文件和<strong>repositories</strong>文件夹，projects.list就是描述仓库列表，repositories就是我们的项目仓库了。在repositories文件夹下面默认会有两个仓库，分别是gitolite-admin.git和testing.git。前者我们等下会讲到，利用gitolite-admin我们可以新增项目并管理用户，后者只是提供测试而已。</p>
@@ -358,7 +372,7 @@ ssh-keygen -t rsa -C &quot;example@email.com&quot;
 <h2 id="管理员配置"><a href="#管理员配置" class="headerlink" title="管理员配置"></a>管理员配置</h2><p>切换到git_admin用户，然后将git用户下的git-admin.git仓库clone下来，具体操作如下：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo su git_admin//切换到git_admin用户</span><br><span class="line"><span class="built_in">cd</span> ~//进入到git_admin的用户目录/home/git_admin</span><br><span class="line">git <span class="built_in">clone</span> git@服务器ip地址(或者本机名称):gitolite-admin.git//<span class="built_in">clone</span> gitolite-admin项目</span><br></pre></td></tr></table></figure>
 <p>在gitolite目录下存在<strong>conf</strong>与<strong>keydir</strong>两个目录，其中conf/下面有个名为gitolite.conf的配置文件。 </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">conf/gitolite.conf 用于Git项目配置，访问权限设置。</span><br><span class="line">keydir/ 用于存储用户的SSH public key(公钥）。</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">conf/gitolite.conf 用于Git项目配置，访问权限设置。</span><br><span class="line">keydir/ 用于存储用户的SSH public key(公钥）。</span><br></pre></td></tr></table></figure>
 <p>管理员利用keydir可以增加与删除用户，利用conf就可以增加、删除项目并给用户配置不同的项目操作权限。</p>
 <h2 id="新增用户"><a href="#新增用户" class="headerlink" title="新增用户"></a>新增用户</h2><p>如果要新增用户，该怎么操作呢？其实很简单，只需要用户通过ssh-keygen生成相应的公钥与密钥，然后将公钥交给我们的管理员，管理员修改公钥名称（为了区分不同的用户，因此需要重命名），最后放到keydir目录下就可以了。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">用户生成公钥(id_rsa.pub)---&gt;交给管理员----&gt;修改名称(如：zhangsan.pub)---&gt;放到keydir目录下---&gt;提交到服务器（git commit and push）</span><br></pre></td></tr></table></figure>
@@ -366,9 +380,9 @@ ssh-keygen -t rsa -C &quot;example@email.com&quot;
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">repo gitolite-admin</span><br><span class="line">    RW+     =   admin</span><br><span class="line"></span><br><span class="line">repo testing</span><br><span class="line">    RW+     =   @all</span><br></pre></td></tr></table></figure>
 <p>R表示读权限，W表示写权限；@all表示所有的用户都对testing项目具有读写权限；因为我将git_admin的sshkey命名为admin.pub，所以gitolite-admin的读写用户为admin。这里我们可以得出结论，我们是根据keydir目录中的key的名称来区分不同的用户，比如zhangsan.pub放在keydir下，那么该用户名为zhangsan！！！！</p>
 <p>假设我们要新增只有zhangsan才能读写的名为HelloWorld的项目，那么只需要这样写：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">repo HelloWorld</span><br><span class="line">	RW+     =   zhangsan</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">repo HelloWorld</span><br><span class="line">	RW+     =   zhangsan</span><br></pre></td></tr></table></figure>
 <p>当你推送到远程仓库后，在git用户的repositories目录下就会新增一个HelloWorld.git远程仓库，张三可以通过git clone就可以将项目clone下来了。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone git@server_ip:HelloWorld.git</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone git@server_ip:HelloWorld.git</span><br></pre></td></tr></table></figure>
 <p><strong>注意：无论是你添加用户还是新增项目，你都需要git提交到远程仓库中。当你提交项目时，git用户目录下的repositories 就会新增该项目仓库。</strong></p>
 <p>至此我们就利用gitolite简单的搭建了Git服务器进行用户与项目管理了，当然还有很多高深的配置与操作还有待去学习和发现。请参考官网：<a href="http://gitolite.com/gitolite/index.html" target="_blank" rel="noopener">Gitolite</a></p>
 
@@ -552,13 +566,21 @@ ssh-keygen -t rsa -C &quot;example@email.com&quot;
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+        <div class="copyright">
+
+<div>
+ <span style="padding-left:25px;background:url(https://www.return520.com/images/beian.png) no-repeat left center" rel="nofollow"></span>
+</div>
+
+<div>
+&copy; <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Victor.yin</span>
 
   
+</div>
 </div>
 
 
@@ -570,7 +592,7 @@ ssh-keygen -t rsa -C &quot;example@email.com&quot;
 
 
 
-  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
 
 
 
@@ -617,6 +639,8 @@ ssh-keygen -t rsa -C &quot;example@email.com&quot;
   
 
 
+  
+
 
 
 
@@ -657,6 +681,11 @@ ssh-keygen -t rsa -C &quot;example@email.com&quot;
     <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
   
 
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
 
   
 
@@ -669,6 +698,13 @@ ssh-keygen -t rsa -C &quot;example@email.com&quot;
 
   
   
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
 
   
   <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>

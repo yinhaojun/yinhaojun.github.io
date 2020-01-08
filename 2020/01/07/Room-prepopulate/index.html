@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang="">
+<html class="theme-next gemini use-motion" lang="">
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -82,14 +82,14 @@
 <meta name="description" content="有时，您可能希望您的应用程序从已经加载了一组特定数据的数据库开始，这称为预填充数据库。在Room2.2.0及更高版本中，可以使用API方法在初始化时使用设备文件系统中预打包的数据库文件中的内容预填充Room数据库。 注意：通过Room.inMemoryDatabaseBuilder()得到的数据库不支持使用createFromAsset()或createFromFile()预填充数据库。">
 <meta name="keywords" content="Android,Jetpack,Room">
 <meta property="og:type" content="article">
-<meta property="og:title" content="预填充数据库">
+<meta property="og:title" content="Room预填充数据库">
 <meta property="og:url" content="http://www.yhaojun.site/2020/01/07/Room-prepopulate/index.html">
 <meta property="og:site_name" content="千里之行，始于足下">
 <meta property="og:description" content="有时，您可能希望您的应用程序从已经加载了一组特定数据的数据库开始，这称为预填充数据库。在Room2.2.0及更高版本中，可以使用API方法在初始化时使用设备文件系统中预打包的数据库文件中的内容预填充Room数据库。 注意：通过Room.inMemoryDatabaseBuilder()得到的数据库不支持使用createFromAsset()或createFromFile()预填充数据库。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2020-01-08T02:02:38.133Z">
+<meta property="og:updated_time" content="2020-01-08T02:34:00.459Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="预填充数据库">
+<meta name="twitter:title" content="Room预填充数据库">
 <meta name="twitter:description" content="有时，您可能希望您的应用程序从已经加载了一组特定数据的数据库开始，这称为预填充数据库。在Room2.2.0及更高版本中，可以使用API方法在初始化时使用设备文件系统中预打包的数据库文件中的内容预填充Room数据库。 注意：通过Room.inMemoryDatabaseBuilder()得到的数据库不支持使用createFromAsset()或createFromFile()预填充数据库。">
 
 
@@ -98,7 +98,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Muse',
+    scheme: 'Gemini',
     version: '5.1.4',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
@@ -126,7 +126,7 @@
 
 
 
-  <title>预填充数据库 | 千里之行，始于足下</title>
+  <title>Room预填充数据库 | 千里之行，始于足下</title>
   
 
 
@@ -191,12 +191,32 @@
         </li>
       
         
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>
+            
+            Commonweal 404
           </a>
         </li>
       
@@ -250,7 +270,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">预填充数据库</h1>
+          <h1 class="post-title" itemprop="name headline">Room预填充数据库</h1>
         
 
         <div class="post-meta">
@@ -304,12 +324,12 @@
 <p><strong><em>注意：通过<code>Room.inMemoryDatabaseBuilder()</code>得到的数据库不支持使用<code>createFromAsset()</code>或<code>createFromFile()</code>预填充数据库。</em></strong></p>
 <a id="more"></a>
 <h2 id="从asset预填充"><a href="#从asset预填充" class="headerlink" title="从asset预填充"></a>从asset预填充</h2><p>要从位于应用程序<code>asset/</code>目录中任何位置的预打包数据库文件中预填充Room数据库，请在调用build()之前从RoomDatabase.Builder对象中调用<code>createFromAsset()</code>方法：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Room.databaseBuilder(appContext, AppDatabase.class, &quot;Sample.db&quot;)</span><br><span class="line">    .createFromAsset(&quot;database/myapp.db&quot;)</span><br><span class="line">    .build();</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Room.databaseBuilder(appContext, AppDatabase.class, <span class="string">"Sample.db"</span>)</span><br><span class="line">    .createFromAsset(<span class="string">"database/myapp.db"</span>)</span><br><span class="line">    .build();</span><br></pre></td></tr></table></figure>
 <p><code>createFromAsset()</code>方法接受一个字符串参数，该参数包含从assets /目录到预打包数据库文件的相对路径。</p>
 <p>Note: When prepopulating from an asset, Room validates the database to ensure that its schema matches the schema of the prepackaged database. You should export your database’s schema to use as a reference as you create the prepackaged database file.</p>
 <p><strong><em>注意：从<code>asset</code>预填充时，Room会验证数据库，以确保其结构与预打包数据库的结构(schema)匹配。 创建预打包的数据库文件时，应导出数据库的结构以用作参考。Schema，指的是一组DDL语句集，该语句集完整地描述了数据库的结构。</em></strong></p>
 <h2 id="从文件系统中预填充"><a href="#从文件系统中预填充" class="headerlink" title="从文件系统中预填充"></a>从文件系统中预填充</h2><p>要从位于设备文件系统中除应用程序<code>asset/</code>目录之外的任何位置的预打包数据库文件中预填充Room数据库，请在调用build（）之前从RoomDatabase.Builder对象中调用<code>createFromFile()</code>方法：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Room.databaseBuilder(appContext, AppDatabase.class, &quot;Sample.db&quot;)</span><br><span class="line">    .createFromFile(new File(&quot;mypath&quot;))</span><br><span class="line">    .build();</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Room.databaseBuilder(appContext, AppDatabase.class, <span class="string">"Sample.db"</span>)</span><br><span class="line">    .createFromFile(<span class="keyword">new</span> File(<span class="string">"mypath"</span>))</span><br><span class="line">    .build();</span><br></pre></td></tr></table></figure>
 <p><code>createFromFile()</code>方法接受预打包数据库文件的File参数。 Room会创建指定文件的副本，而不是直接打开它，因此请确保您的应用对文件具有读取权限。</p>
 <h2 id="处理包括预打包数据库的迁移"><a href="#处理包括预打包数据库的迁移" class="headerlink" title="处理包括预打包数据库的迁移"></a>处理包括预打包数据库的迁移</h2><p>预打包的数据库文件还可以更改Room数据库处理回退迁移的方式。 通常，启用破坏性迁移后，Room必须执行没有迁移路径的迁移，Room会删除数据库中的所有表，并为目标版本创建具有指定架构的空数据库。 但是，如果包括与目标版本号相同的预打包数据库文件，Room会在执行破坏性迁移后尝试使用预打包数据库文件的内容填充新创建的数据库。</p>
 <p>下面的内容提供了一些如何在实践中工作的示例。</p>
@@ -321,7 +341,7 @@
 <li>​     从版本2到版本3没有实现的迁移路径</li>
 <li>​     破坏性迁移(<strong>Destructive migrations</strong>)已启用。</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">// 定义数据库的版本是 3.</span><br><span class="line">@Database(version = 3)</span><br><span class="line">public abstract class AppDatabase extends RoomDatabase &#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 启用Destructive migrations并提供了预打包的数据myapp.db</span><br><span class="line">Room.databaseBuilder(appContext, AppDatabase.class, &quot;Sample.db&quot;)</span><br><span class="line">    .createFromAsset(&quot;database/myapp.db&quot;)</span><br><span class="line">    .fallbackToDestructiveMigration()</span><br><span class="line">    .build();</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 定义数据库的版本是 3.</span></span><br><span class="line"><span class="meta">@Database</span>(version = <span class="number">3</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">AppDatabase</span> <span class="keyword">extends</span> <span class="title">RoomDatabase</span> </span>&#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 启用Destructive migrations并提供了预打包的数据myapp.db</span></span><br><span class="line">Room.databaseBuilder(appContext, AppDatabase.class, <span class="string">"Sample.db"</span>)</span><br><span class="line">    .createFromAsset(<span class="string">"database/myapp.db"</span>)</span><br><span class="line">    .fallbackToDestructiveMigration()</span><br><span class="line">    .build();</span><br></pre></td></tr></table></figure>
 <p>在这种情况下会发生以下情况：</p>
 <ul>
 <li>由于您的应用程序中定义的数据库为版本3，而设备上已安装的数据库实例为版本2，因此必须进行迁移</li>
@@ -330,7 +350,7 @@
 <li>由于预打包的数据库文件的版本为3，因此Room会重新创建数据库并使用预打包的数据库文件的内容填充它。 另一方面，如果您预打包的数据库文件位于版本2上，则Room将注意该文件与目标版本不匹配，因此不会将其用作回退迁移的一部分（也就是不会将预打包数据库的内容填充到新的数据库中）。</li>
 </ul>
 <h4 id="示例：使用预打包的数据库实施迁移"><a href="#示例：使用预打包的数据库实施迁移" class="headerlink" title="示例：使用预打包的数据库实施迁移"></a>示例：使用预打包的数据库实施迁移</h4><p>假设您的应用实现了从版本2到版本3的迁移路径：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">// Database class definition declaring version 3.</span><br><span class="line">@Database(version = 3)</span><br><span class="line">public abstract class AppDatabase extends RoomDatabase &#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// Migration path definition from version 2 to version 3.</span><br><span class="line">static final Migration MIGRATION_2_3 = new Migration(2, 3) &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public void migrate(SupportSQLiteDatabase database) &#123;</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">// A prepackaged database is provided.</span><br><span class="line">Room.databaseBuilder(appContext, AppDatabase.class, &quot;Sample.db&quot;)</span><br><span class="line">    .createFromAsset(&quot;database/myapp.db&quot;)</span><br><span class="line">    .addMigrations(MIGRATION_2_3)</span><br><span class="line">    .build();</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Database class definition declaring version 3.</span></span><br><span class="line"><span class="meta">@Database</span>(version = <span class="number">3</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">AppDatabase</span> <span class="keyword">extends</span> <span class="title">RoomDatabase</span> </span>&#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Migration path definition from version 2 to version 3.</span></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">final</span> Migration MIGRATION_2_3 = <span class="keyword">new</span> Migration(<span class="number">2</span>, <span class="number">3</span>) &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">migrate</span><span class="params">(SupportSQLiteDatabase database)</span> </span>&#123;</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// A prepackaged database is provided.</span></span><br><span class="line">Room.databaseBuilder(appContext, AppDatabase.class, <span class="string">"Sample.db"</span>)</span><br><span class="line">    .createFromAsset(<span class="string">"database/myapp.db"</span>)</span><br><span class="line">    .addMigrations(MIGRATION_2_3)</span><br><span class="line">    .build();</span><br></pre></td></tr></table></figure>
 <p>在这种情况下会发生以下情况：</p>
 <ul>
 <li>由于您的应用程序中定义的数据库为版本3，而设备上已安装的数据库为版本2，因此必须进行迁移</li>
@@ -344,7 +364,7 @@
 <li>从版本3到版本4有一个已实现的迁移路径，但没有从版本2到版本3的迁移路径</li>
 <li>破坏性迁移已启用</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">// Database class definition declaring version 4.</span><br><span class="line">@Database(version = 4)</span><br><span class="line">public abstract class AppDatabase extends RoomDatabase &#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// Migration path definition from version 3 to version 4.</span><br><span class="line">static final Migration MIGRATION_3_4 = new Migration(3, 4) &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public void migrate(SupportSQLiteDatabase database) &#123;</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">// Destructive migrations are enabled and a prepackaged database is</span><br><span class="line">// provided.</span><br><span class="line">Room.databaseBuilder(appContext, AppDatabase.class, &quot;Sample.db&quot;)</span><br><span class="line">    .createFromAsset(&quot;database/myapp.db&quot;)</span><br><span class="line">    .addMigrations(MIGRATION_3_4)</span><br><span class="line">    .fallbackToDestructiveMigration()</span><br><span class="line">    .build();</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Database class definition declaring version 4.</span></span><br><span class="line"><span class="meta">@Database</span>(version = <span class="number">4</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">AppDatabase</span> <span class="keyword">extends</span> <span class="title">RoomDatabase</span> </span>&#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Migration path definition from version 3 to version 4.</span></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">final</span> Migration MIGRATION_3_4 = <span class="keyword">new</span> Migration(<span class="number">3</span>, <span class="number">4</span>) &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">migrate</span><span class="params">(SupportSQLiteDatabase database)</span> </span>&#123;</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Destructive migrations are enabled and a prepackaged database is</span></span><br><span class="line"><span class="comment">// provided.</span></span><br><span class="line">Room.databaseBuilder(appContext, AppDatabase.class, <span class="string">"Sample.db"</span>)</span><br><span class="line">    .createFromAsset(<span class="string">"database/myapp.db"</span>)</span><br><span class="line">    .addMigrations(MIGRATION_3_4)</span><br><span class="line">    .fallbackToDestructiveMigration()</span><br><span class="line">    .build();</span><br></pre></td></tr></table></figure>
 <p>在这种情况下会发生以下情况：</p>
 <ul>
 <li>由于您的应用程序中定义的数据库为版本4，而设备上已安装的数据库实例为版本2，因此必须进行迁移</li>
@@ -539,13 +559,21 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+        <div class="copyright">
+
+<div>
+ <span style="padding-left:25px;background:url(https://www.return520.com/images/beian.png) no-repeat left center" rel="nofollow"></span>
+</div>
+
+<div>
+&copy; <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Victor.yin</span>
 
   
+</div>
 </div>
 
 
@@ -557,7 +585,7 @@
 
 
 
-  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
 
 
 
@@ -604,6 +632,8 @@
   
 
 
+  
+
 
 
 
@@ -644,6 +674,11 @@
     <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
   
 
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
 
   
 
@@ -656,6 +691,13 @@
 
   
   
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
 
   
   <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>

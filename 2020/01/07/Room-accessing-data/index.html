@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang="">
+<html class="theme-next gemini use-motion" lang="">
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="千里之行，始于足下">
 <meta property="og:description" content="要使用 Room 访问应用的数据，您需要使用数据访问对象 (DAO)。这些Dao对象构成了Room的主要组件，因为每个DAO都包含一些方法，这些方法提供对应用数据库的抽象访问权限。 通过使用DAO类（而不是查询构建器或直接查询）访问数据库，您可以拆分数据库架构的不同组件。 DAO既可以是接口，也可以是抽象类。如果是抽象类，则该DAO可以选择有一个以RoomDatabase为唯一参数的构造函数，Ro">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2020-01-08T02:03:43.757Z">
+<meta property="og:updated_time" content="2020-01-08T02:30:39.181Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用 Room DAO 访问数据">
 <meta name="twitter:description" content="要使用 Room 访问应用的数据，您需要使用数据访问对象 (DAO)。这些Dao对象构成了Room的主要组件，因为每个DAO都包含一些方法，这些方法提供对应用数据库的抽象访问权限。 通过使用DAO类（而不是查询构建器或直接查询）访问数据库，您可以拆分数据库架构的不同组件。 DAO既可以是接口，也可以是抽象类。如果是抽象类，则该DAO可以选择有一个以RoomDatabase为唯一参数的构造函数，Ro">
@@ -98,7 +98,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Muse',
+    scheme: 'Gemini',
     version: '5.1.4',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
@@ -191,12 +191,32 @@
         </li>
       
         
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>
+            
+            Commonweal 404
           </a>
         </li>
       
@@ -308,15 +328,15 @@
 <h2 id="定义方法以方便使用"><a href="#定义方法以方便使用" class="headerlink" title="定义方法以方便使用"></a>定义方法以方便使用</h2><p>您可以使用 DAO 类表示多个便捷查询。本文档提供了几个常见示例。</p>
 <h3 id="Insert"><a href="#Insert" class="headerlink" title="Insert"></a>Insert</h3><p>当您创建 DAO 方法并使用 <code>@Insert</code>对其进行注释时，Room 会生成一个实现，该实现在单个事务中将所有参数插入到数据库中。</p>
 <p>以下代码段展示了几个示例查询：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">@Dao</span><br><span class="line">public interface MyDao &#123;</span><br><span class="line">    @Insert(onConflict = OnConflictStrategy.REPLACE)</span><br><span class="line">    public void insertUsers(User... users);</span><br><span class="line"></span><br><span class="line">    @Insert</span><br><span class="line">    public void insertBothUsers(User user1, User user2);</span><br><span class="line"></span><br><span class="line">    @Insert</span><br><span class="line">    public void insertUsersAndFriends(User user, List&lt;User&gt; friends);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Dao</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">MyDao</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Insert</span>(onConflict = OnConflictStrategy.REPLACE)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">insertUsers</span><span class="params">(User... users)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Insert</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">insertBothUsers</span><span class="params">(User user1, User user2)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Insert</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">insertUsersAndFriends</span><span class="params">(User user, List&lt;User&gt; friends)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>如果 <code>@Insert</code>方法只接收 1 个参数，则可返回 <code>long</code>，这是插入项的新 <code>rowId</code>。如果参数是数组或集合，则应返回 <code>long[]</code> 或 <code>List&lt;Long&gt;</code>。</p>
 <h3 id="Update"><a href="#Update" class="headerlink" title="Update"></a>Update</h3><p><code>Update</code>便捷方法会修改数据库中以参数形式给出的一组实体。它使用与每个实体的主键匹配的查询。</p>
 <p>以下代码段演示了如何定义此方法：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">@Dao</span><br><span class="line">public interface MyDao &#123;</span><br><span class="line">    @Update</span><br><span class="line">    public void updateUsers(User... users);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Dao</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">MyDao</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Update</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">updateUsers</span><span class="params">(User... users)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>虽然通常没有必要，但您可以让此方法返回一个 <code>int</code> 值，表示数据库中更新的行数。</p>
 <h3 id="Delete"><a href="#Delete" class="headerlink" title="Delete"></a>Delete</h3><p><code>Delete</code>便捷方法会从数据库中删除一组以参数形式给出的实体。它使用主键查找要删除的实体。</p>
 <p>以下代码段演示了如何定义此方法：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">@Dao</span><br><span class="line">public interface MyDao &#123;</span><br><span class="line">    @Delete</span><br><span class="line">    public void deleteUsers(User... users);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Dao</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">MyDao</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Delete</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">deleteUsers</span><span class="params">(User... users)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>虽然通常没有必要，但您可以让此方法返回一个 <code>int</code> 值，表示从数据库中删除的行数。</p>
 <h2 id="Query"><a href="#Query" class="headerlink" title="Query"></a>Query</h2><p><code>@Query</code>是 DAO 类中使用的主要注释。它允许您对数据库执行读/写操作。每个 <code>@Query</code>方法都会在编译时进行验证，因此如果查询出现问题，则会发生编译错误，而不是运行时失败。</p>
 <p>Room 还会验证查询的返回值，这样的话，当返回的对象中的字段名称与查询响应中的对应列名称不匹配时，Room 会通过以下两种方式之一提醒您：</p>
@@ -324,24 +344,24 @@
 <li>如果只有部分字段名称匹配，则会发出警告</li>
 <li>如果没有任何字段名称匹配，则会发出错误</li>
 </ul>
-<h3 id="简单查询"><a href="#简单查询" class="headerlink" title="简单查询"></a>简单查询</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">@Dao</span><br><span class="line">public interface MyDao &#123;</span><br><span class="line">    @Query(&quot;SELECT * FROM user&quot;)</span><br><span class="line">    public User[] loadAllUsers();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="简单查询"><a href="#简单查询" class="headerlink" title="简单查询"></a>简单查询</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Dao</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">MyDao</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Query</span>(<span class="string">"SELECT * FROM user"</span>)</span><br><span class="line">    <span class="keyword">public</span> User[] loadAllUsers();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>这是一个极其简单的查询，可加载所有用户。在编译时，Room 知道它在查询用户表中的所有列。如果查询包含语法错误，或者数据库中没有用户表格，则 Room 会在您的应用编译时显示包含相应消息的错误。</p>
 <h3 id="将参数传递给查询"><a href="#将参数传递给查询" class="headerlink" title="将参数传递给查询"></a>将参数传递给查询</h3><p>在大多数情况下，您需要将参数传递给查询以执行过滤操作，例如仅显示某个年龄以上的用户。要完成此任务，请在 Room 注释中使用方法参数，如以下代码段所示：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Dao</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">MyDao</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Query</span>(<span class="string">"SELECT * FROM user WHERE age &gt; :minAge"</span>)</span><br><span class="line">    <span class="keyword">public</span> User[] loadAllUsersOlderThan(<span class="keyword">int</span> minAge);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>在编译时处理此查询时，Room 会将 <code>:minAge</code> 绑定参数与 <code>minAge</code> 方法参数相匹配。Room 通过参数名称进行匹配。如果有不匹配的情况，则应用编译时会出现错误。</p>
 <p>您还可以在查询中传递多个参数或多次引用这些参数，如以下代码段所示：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">@Dao</span><br><span class="line">public interface MyDao &#123;</span><br><span class="line">    @Query(&quot;SELECT * FROM user WHERE age BETWEEN :minAge AND :maxAge&quot;)</span><br><span class="line">    public User[] loadAllUsersBetweenAges(int minAge, int maxAge);</span><br><span class="line"></span><br><span class="line">    @Query(&quot;SELECT * FROM user WHERE first_name LIKE :search &quot; +</span><br><span class="line">           &quot;OR last_name LIKE :search&quot;)</span><br><span class="line">    public List&lt;User&gt; findUserWithName(String search);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Dao</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">MyDao</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Query</span>(<span class="string">"SELECT * FROM user WHERE age BETWEEN :minAge AND :maxAge"</span>)</span><br><span class="line">    <span class="keyword">public</span> User[] loadAllUsersBetweenAges(<span class="keyword">int</span> minAge, <span class="keyword">int</span> maxAge);</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Query</span>(<span class="string">"SELECT * FROM user WHERE first_name LIKE :search "</span> +</span><br><span class="line">           <span class="string">"OR last_name LIKE :search"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;User&gt; <span class="title">findUserWithName</span><span class="params">(String search)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="返回列的子集"><a href="#返回列的子集" class="headerlink" title="返回列的子集"></a>返回列的子集</h3><p>大多数情况下，您只需获取实体的几个字段。例如，您的界面可能仅显示用户的名字和姓氏，而不是用户的每一条详细信息。通过仅提取应用界面中显示的列，您可以节省宝贵的资源，并且您的查询也能更快完成。</p>
 <p>借助 Room，您可以从查询中返回任何基于 Java 的对象，前提是结果列集合会映射到返回的对象。例如，您可以创建以下基于 Java 的普通对象 (POJO) 来获取用户的名字和姓氏：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public class NameTuple &#123;</span><br><span class="line">    @ColumnInfo(name = &quot;first_name&quot;)</span><br><span class="line">    public String firstName;</span><br><span class="line"></span><br><span class="line">    @ColumnInfo(name = &quot;last_name&quot;)</span><br><span class="line">    @NonNull</span><br><span class="line">    public String lastName;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NameTuple</span> </span>&#123;</span><br><span class="line">    <span class="meta">@ColumnInfo</span>(name = <span class="string">"first_name"</span>)</span><br><span class="line">    <span class="keyword">public</span> String firstName;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@ColumnInfo</span>(name = <span class="string">"last_name"</span>)</span><br><span class="line">    <span class="meta">@NonNull</span></span><br><span class="line">    <span class="keyword">public</span> String lastName;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>现在，您可以在查询方法中使用此 POJO：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">@Dao</span><br><span class="line">public interface MyDao &#123;</span><br><span class="line">    @Query(&quot;SELECT first_name, last_name FROM user&quot;)</span><br><span class="line">    public List&lt;NameTuple&gt; loadFullName();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Dao</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">MyDao</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Query</span>(<span class="string">"SELECT first_name, last_name FROM user"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;NameTuple&gt; <span class="title">loadFullName</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>Room 知道该查询会返回 <code>first_name</code> 和 <code>last_name</code> 列的值，并且这些值会映射到 <code>NameTuple</code> 类的字段。因此，Room 可以生成正确的代码。如果查询返回太多的列，或者返回 <code>NameTuple</code> 类中不存在的列，则 Room 会显示一条警告。</p>
 <p><strong><em>注意：这些 POJO 也可以使用 @Embedded 注释。</em></strong></p>
 <h3 id="传递参数的集合"><a href="#传递参数的集合" class="headerlink" title="传递参数的集合"></a>传递参数的集合</h3><p>您的部分查询可能要求您传入数量不定的参数，参数的确切数量要到运行时才知道。例如，您可能希望从部分区域中检索所有用户的相关信息。Room 知道参数何时表示集合，并根据提供的参数数量在运行时自动将其展开。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">@Dao</span><br><span class="line">public interface MyDao &#123;</span><br><span class="line">    @Query(&quot;SELECT first_name, last_name FROM user WHERE region IN (:regions)&quot;)</span><br><span class="line">    public List&lt;NameTuple&gt; loadUsersFromRegions(List&lt;String&gt; regions);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Dao</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">MyDao</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Query</span>(<span class="string">"SELECT first_name, last_name FROM user WHERE region IN (:regions)"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;NameTuple&gt; <span class="title">loadUsersFromRegions</span><span class="params">(List&lt;String&gt; regions)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="可观察查询"><a href="#可观察查询" class="headerlink" title="可观察查询"></a>可观察查询</h3><p>执行查询时，您通常会希望应用的界面在数据发生变化时自动更新。为此，请在查询方法说明中使用 <code>LiveData</code>类型的返回值。当数据库更新时，Room 会生成更新<code>LiveData</code>所必需的所有代码。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">@Dao</span><br><span class="line">public interface MyDao &#123;</span><br><span class="line">    @Query(&quot;SELECT first_name, last_name FROM user WHERE region IN (:regions)&quot;)</span><br><span class="line">    public LiveData&lt;List&lt;User&gt;&gt; loadUsersFromRegionsSync(List&lt;String&gt; regions);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Dao</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">MyDao</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Query</span>(<span class="string">"SELECT first_name, last_name FROM user WHERE region IN (:regions)"</span>)</span><br><span class="line">    <span class="keyword">public</span> LiveData&lt;List&lt;User&gt;&gt; loadUsersFromRegionsSync(List&lt;String&gt; regions);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><strong><em>注意：自版本 1.0 起，Room 会根据在查询中访问的表格列表决定是否更新 LiveData 实例。</em></strong></p>
 <h3 id="使用-RxJava-进行响应式查询"><a href="#使用-RxJava-进行响应式查询" class="headerlink" title="使用 RxJava 进行响应式查询"></a>使用 RxJava 进行响应式查询</h3><p>Room 为 RxJava2 类型的返回值提供了以下支持：</p>
 <ul>
@@ -350,19 +370,19 @@
 </ul>
 <p>要使用此功能，请在应用的 <code>build.gradle</code> 文件中添加最新版本的 <strong>rxjava2</strong> 工件：</p>
 <p>app/build.gradle</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">dependencies &#123;</span><br><span class="line">    def room_version = &quot;2.1.0&quot;</span><br><span class="line">    implementation &apos;androidx.room:room-rxjava2:$room_version&apos;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">dependencies &#123;</span><br><span class="line">    def room_version = <span class="string">"2.1.0"</span></span><br><span class="line">    implementation <span class="string">'androidx.room:room-rxjava2:$room_version'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>以下代码段展示了几个如何使用这些返回类型的示例：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">@Dao</span><br><span class="line">public interface MyDao &#123;</span><br><span class="line">    @Query(&quot;SELECT * from user where id = :id LIMIT 1&quot;)</span><br><span class="line">    public Flowable&lt;User&gt; loadUserById(int id);</span><br><span class="line"></span><br><span class="line">    // Emits the number of users added to the database.</span><br><span class="line">    @Insert</span><br><span class="line">    public Maybe&lt;Integer&gt; insertLargeNumberOfUsers(List&lt;User&gt; users);</span><br><span class="line"></span><br><span class="line">    // Makes sure that the operation finishes successfully.</span><br><span class="line">    @Insert</span><br><span class="line">    public Completable insertLargeNumberOfUsers(User... users);</span><br><span class="line"></span><br><span class="line">    /* Emits the number of users removed from the database. Always emits at</span><br><span class="line">       least one user. */</span><br><span class="line">    @Delete</span><br><span class="line">    public Single&lt;Integer&gt; deleteUsers(List&lt;User&gt; users);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Dao</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">MyDao</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Query</span>(<span class="string">"SELECT * from user where id = :id LIMIT 1"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Flowable&lt;User&gt; <span class="title">loadUserById</span><span class="params">(<span class="keyword">int</span> id)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Emits the number of users added to the database.</span></span><br><span class="line">    <span class="meta">@Insert</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Maybe&lt;Integer&gt; <span class="title">insertLargeNumberOfUsers</span><span class="params">(List&lt;User&gt; users)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Makes sure that the operation finishes successfully.</span></span><br><span class="line">    <span class="meta">@Insert</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Completable <span class="title">insertLargeNumberOfUsers</span><span class="params">(User... users)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* Emits the number of users removed from the database. Always emits at</span></span><br><span class="line"><span class="comment">       least one user. */</span></span><br><span class="line">    <span class="meta">@Delete</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Single&lt;Integer&gt; <span class="title">deleteUsers</span><span class="params">(List&lt;User&gt; users)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="直接光标访问"><a href="#直接光标访问" class="headerlink" title="直接光标访问"></a>直接光标访问</h3><p>如果应用的逻辑需要直接访问返回行，您可以从查询返回 <code>Cursor</code> 对象，如以下代码段所示：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">@Dao</span><br><span class="line">public interface MyDao &#123;</span><br><span class="line">    @Query(&quot;SELECT * FROM user WHERE age &gt; :minAge LIMIT 5&quot;)</span><br><span class="line">    public Cursor loadRawUsersOlderThan(int minAge);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Dao</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">MyDao</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Query</span>(<span class="string">"SELECT * FROM user WHERE age &gt; :minAge LIMIT 5"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Cursor <span class="title">loadRawUsersOlderThan</span><span class="params">(<span class="keyword">int</span> minAge)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><strong><em>注意：强烈建议您不要使用 Cursor API，因为它无法保证行是否存在或者行包含哪些值。只有当您已具有需要光标且无法轻松重构的代码时，才使用此功能。</em></strong></p>
 <h3 id="查询多个表格"><a href="#查询多个表格" class="headerlink" title="查询多个表格"></a>查询多个表格</h3><p>您的部分查询可能需要访问多个表格才能计算出结果。借助 Room，您可以编写任何查询，因此您也可以联接表格。此外，如果响应是可观察数据类型（如 <code>Flowable</code> 或 <code>LiveData</code>），Room 会观察查询中引用的所有表格，以确定是否存在无效表格。</p>
 <p>以下代码段展示了如何执行表格联接来整合两个表格的信息：一个表格包含当前借阅图书的用户，另一个表格包含当前处于已被借阅状态的图书的数据。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@Dao</span><br><span class="line">public interface MyDao &#123;</span><br><span class="line">    @Query(&quot;SELECT * FROM book &quot; +</span><br><span class="line">           &quot;INNER JOIN loan ON loan.book_id = book.id &quot; +</span><br><span class="line">           &quot;INNER JOIN user ON user.id = loan.user_id &quot; +</span><br><span class="line">           &quot;WHERE user.name LIKE :userName&quot;)</span><br><span class="line">   public List&lt;Book&gt; findBooksBorrowedByNameSync(String userName);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Dao</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">MyDao</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Query</span>(<span class="string">"SELECT * FROM book "</span> +</span><br><span class="line">           <span class="string">"INNER JOIN loan ON loan.book_id = book.id "</span> +</span><br><span class="line">           <span class="string">"INNER JOIN user ON user.id = loan.user_id "</span> +</span><br><span class="line">           <span class="string">"WHERE user.name LIKE :userName"</span>)</span><br><span class="line">   <span class="function"><span class="keyword">public</span> List&lt;Book&gt; <span class="title">findBooksBorrowedByNameSync</span><span class="params">(String userName)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>您还可以从这些查询中返回 POJO。例如，您可以编写一条加载某位用户及其宠物名字的查询，如下所示：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">@Dao</span><br><span class="line">public interface MyDao &#123;</span><br><span class="line">   @Query(&quot;SELECT user.name AS userName, pet.name AS petName &quot; +</span><br><span class="line">          &quot;FROM user, pet &quot; +</span><br><span class="line">          &quot;WHERE user.id = pet.user_id&quot;)</span><br><span class="line">   public LiveData&lt;List&lt;UserPet&gt;&gt; loadUserAndPetNames();</span><br><span class="line"></span><br><span class="line">   // You can also define this class in a separate file, as long as you add the</span><br><span class="line">   // &quot;public&quot; access modifier.</span><br><span class="line">   static class UserPet &#123;</span><br><span class="line">       public String userName;</span><br><span class="line">       public String petName;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Dao</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">MyDao</span> </span>&#123;</span><br><span class="line">   <span class="meta">@Query</span>(<span class="string">"SELECT user.name AS userName, pet.name AS petName "</span> +</span><br><span class="line">          <span class="string">"FROM user, pet "</span> +</span><br><span class="line">          <span class="string">"WHERE user.id = pet.user_id"</span>)</span><br><span class="line">   <span class="keyword">public</span> LiveData&lt;List&lt;UserPet&gt;&gt; loadUserAndPetNames();</span><br><span class="line"></span><br><span class="line">   <span class="comment">// You can also define this class in a separate file, as long as you add the</span></span><br><span class="line">   <span class="comment">// "public" access modifier.</span></span><br><span class="line">   <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">UserPet</span> </span>&#123;</span><br><span class="line">       <span class="keyword">public</span> String userName;</span><br><span class="line">       <span class="keyword">public</span> String petName;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p> 本指南也适用于带有 <code>@Transaction</code> 注释的 DAO 方法。您可以使用此功能通过其他 DAO 方法构建暂停数据库方法。然后，这些方法会在单个数据库事务中运行。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">@Dao</span><br><span class="line">   abstract class UsersDao &#123;</span><br><span class="line">       @Transaction</span><br><span class="line">       open suspend fun setLoggedInUser(loggedInUser: User) &#123;</span><br><span class="line">           deleteUser(loggedInUser)</span><br><span class="line">           insertUser(loggedInUser)</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       @Query(&quot;DELETE FROM users&quot;)</span><br><span class="line">       abstract fun deleteUser(user: User)</span><br><span class="line"></span><br><span class="line">       @Insert</span><br><span class="line">       abstract suspend fun insertUser(user: User)</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Dao</span></span><br><span class="line">   <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">UsersDao</span> </span>&#123;</span><br><span class="line">       <span class="meta">@Transaction</span></span><br><span class="line">       <span class="function">open suspend fun <span class="title">setLoggedInUser</span><span class="params">(loggedInUser: User)</span> </span>&#123;</span><br><span class="line">           deleteUser(loggedInUser)</span><br><span class="line">           insertUser(loggedInUser)</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       <span class="meta">@Query</span>(<span class="string">"DELETE FROM users"</span>)</span><br><span class="line">       <span class="function"><span class="keyword">abstract</span> fun <span class="title">deleteUser</span><span class="params">(user: User)</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">       @Insert</span></span><br><span class="line"><span class="function">       <span class="keyword">abstract</span> suspend fun <span class="title">insertUser</span><span class="params">(user: User)</span></span></span><br><span class="line"><span class="function">   &#125;</span></span><br></pre></td></tr></table></figure>
 <p><strong><em>注意：应避免在单个数据库事务中执行额外的应用端工作，因为 Room 会将此类事务视为独占事务，并且按顺序每次仅执行一个事务。也就是说，包含不必要操作的事务很容易锁定您的数据库并影响性能。</em></strong></p>
 
       
@@ -398,8 +418,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/01/07/Room-relationships/" rel="next" title="定义对象之间的关系">
-                <i class="fa fa-chevron-left"></i> 定义对象之间的关系
+              <a href="/2020/01/07/Room-relationships/" rel="next" title="Room定义对象之间的关系">
+                <i class="fa fa-chevron-left"></i> Room定义对象之间的关系
               </a>
             
           </div>
@@ -408,8 +428,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2020/01/07/Room-prepopulate/" rel="prev" title="预填充数据库">
-                预填充数据库 <i class="fa fa-chevron-right"></i>
+              <a href="/2020/01/07/Room-prepopulate/" rel="prev" title="Room预填充数据库">
+                Room预填充数据库 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -553,13 +573,21 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+        <div class="copyright">
+
+<div>
+ <span style="padding-left:25px;background:url(https://www.return520.com/images/beian.png) no-repeat left center" rel="nofollow"></span>
+</div>
+
+<div>
+&copy; <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Victor.yin</span>
 
   
+</div>
 </div>
 
 
@@ -571,7 +599,7 @@
 
 
 
-  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
 
 
 
@@ -618,6 +646,8 @@
   
 
 
+  
+
 
 
 
@@ -658,6 +688,11 @@
     <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
   
 
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
 
   
 
@@ -670,6 +705,13 @@
 
   
   
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
 
   
   <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>

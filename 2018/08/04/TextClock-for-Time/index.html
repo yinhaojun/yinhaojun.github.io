@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang="">
+<html class="theme-next gemini use-motion" lang="">
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -89,7 +89,7 @@
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://www.yhaojun.site/2018/08/04/TextClock-for-Time/date_format.png">
 <meta property="og:image" content="http://www.yhaojun.site/2018/08/04/TextClock-for-Time/example.png">
-<meta property="og:updated_time" content="2019-01-07T04:13:05.786Z">
+<meta property="og:updated_time" content="2020-01-08T02:31:43.502Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="时间控件TextClock">
 <meta name="twitter:description" content="前言各位大佬好，小弟最近做了一款安卓机顶盒的主页。因为是针对电视的主页，一般来说需要显示系统时间。糟糕的是，我在Android Studio里面我没有找到对应显示时间的控件，参考以前同事写的代码后采用了以下解决方案：利用定时器，每秒取一次系统时间，然后格式化并显示在TextView上。显然这种方式是不行的，那我们该怎么做呢？">
@@ -101,7 +101,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Muse',
+    scheme: 'Gemini',
     version: '5.1.4',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
@@ -194,12 +194,32 @@
         </li>
       
         
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>
+            
+            Commonweal 404
           </a>
         </li>
       
@@ -450,7 +470,7 @@
 </table>
 <h2 id="TextClock"><a href="#TextClock" class="headerlink" title="TextClock"></a>TextClock</h2><p>好啦，说完了以上两个概念，现在我们具体来看看如何使用TextClock！</p>
 <p>首先就当成普通的控件在布局文件中直接使用，如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;TextClock</span><br><span class="line">          android:id=&quot;@+id/timeView&quot;</span><br><span class="line">          android:layout_width=&quot;wrap_content&quot;</span><br><span class="line">          android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">          android:layout_centerVertical=&quot;true&quot;</span><br><span class="line">          android:layout_gravity=&quot;center&quot;</span><br><span class="line">          android:layout_toStartOf=&quot;@+id/dataView&quot;</span><br><span class="line">          android:format24Hour =&quot;HH:mm&quot;</span><br><span class="line">          android:format12Hour =&quot;hh:mm&quot;</span><br><span class="line">          android:textColor=&quot;@color/material_white&quot;</span><br><span class="line">          android:textSize=&quot;@dimen/w_56&quot; /&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">TextClock</span></span></span><br><span class="line"><span class="tag">          <span class="attr">android:id</span>=<span class="string">"@+id/timeView"</span></span></span><br><span class="line"><span class="tag">          <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></span></span><br><span class="line"><span class="tag">          <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></span></span><br><span class="line"><span class="tag">          <span class="attr">android:layout_centerVertical</span>=<span class="string">"true"</span></span></span><br><span class="line"><span class="tag">          <span class="attr">android:layout_gravity</span>=<span class="string">"center"</span></span></span><br><span class="line"><span class="tag">          <span class="attr">android:layout_toStartOf</span>=<span class="string">"@+id/dataView"</span></span></span><br><span class="line"><span class="tag">          <span class="attr">android:format24Hour</span> =<span class="string">"HH:mm"</span></span></span><br><span class="line"><span class="tag">          <span class="attr">android:format12Hour</span> =<span class="string">"hh:mm"</span></span></span><br><span class="line"><span class="tag">          <span class="attr">android:textColor</span>=<span class="string">"@color/material_white"</span></span></span><br><span class="line"><span class="tag">          <span class="attr">android:textSize</span>=<span class="string">"@dimen/w_56"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
 <p>与其他控件不同的是，TextClock有几个特别的属性，根据这些属性能够显示特定格式的时间。具体如下：</p>
 <table>
 <thead>
@@ -666,13 +686,21 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+        <div class="copyright">
+
+<div>
+ <span style="padding-left:25px;background:url(https://www.return520.com/images/beian.png) no-repeat left center" rel="nofollow"></span>
+</div>
+
+<div>
+&copy; <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Victor.yin</span>
 
   
+</div>
 </div>
 
 
@@ -684,7 +712,7 @@
 
 
 
-  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
 
 
 
@@ -731,6 +759,8 @@
   
 
 
+  
+
 
 
 
@@ -771,6 +801,11 @@
     <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
   
 
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
 
   
 
@@ -783,6 +818,13 @@
 
   
   
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
 
   
   <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
