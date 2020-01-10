@@ -32,33 +32,39 @@ tags:
 默认情况下服务器只有root用户，直接用root进行操作肯定是不安全的，因此需要额外新增两个账户。一个用来存放Git仓库（用户名为git），一个用来进行Git用户管理（用户名为git_admin）。
 
 
-	useradd git -m //添加git用户
-	passwd git//设置git用户的登陆密码
-	
-	useradd git_admin -m //添加git_admin用户
-	passwd git_admin //设置git_admin的登陆密码 
+```shell
+useradd git -m //添加git用户
+passwd git//设置git用户的登陆密码
+
+useradd git_admin -m //添加git_admin用户
+passwd git_admin //设置git_admin的登陆密码 
+```
 
 ## 安装软件 ##
 **安装Git**
 
-	sudo apt-get update//更新软件源
-	sudo apt-get install git
+```shell
+sudo apt-get update//更新软件源
+sudo apt-get install git
+```
 **生成sshkey**
 切换到git_admin用户下，然后执行ssh-keygen生成sshkey，具体操作如下：
 
-	sudo su git_admin//切换到git_admin
-	ssh-keygen -t rsa -C "example@email.com"
+```shell
+sudo su git_admin//切换到git_admin
+ssh-keygen -t rsa -C "example@email.com"
+```
 这时候一直按回车就可以了，在你的根目录下就会生成.ssh文件夹，你可以通过**ls -al**来进行查看！将.ssh
 文件夹下的id_rsa.pub文件拷贝到/tmp目录下备用。
 
-```
+```shell
 cp ~/.ssh/id_rsa.pub /tmp
 ```
 
 **安装gitolite**
 切换到git用户，并新建bin目录，操作如下：
 
-```
+```shell
 su git //切换到git用户
 cd ~ //进入git用户目录
 mkdir bin//新建bin文件夹'
@@ -66,13 +72,13 @@ mkdir bin//新建bin文件夹'
 
 下载gitolite代码
 
-```
+```shell
 git clone http://github.com/sitaramc/gitolite
 ```
 
 安装gitolite到bin目录
 
-```
+```shell
 ${HOME}/gitolite/install -to ${HOME}/bin
 ```
 
@@ -98,7 +104,7 @@ git clone git@服务器ip地址(或者本机名称):gitolite-admin.git//clone gi
 
 在gitolite目录下存在**conf**与**keydir**两个目录，其中conf/下面有个名为gitolite.conf的配置文件。 
 
-```
+```shell
 conf/gitolite.conf 用于Git项目配置，访问权限设置。
 keydir/ 用于存储用户的SSH public key(公钥）。
 ```
@@ -129,14 +135,14 @@ R表示读权限，W表示写权限；@all表示所有的用户都对testing项�
 
 假设我们要新增只有zhangsan才能读写的名为HelloWorld的项目，那么只需要这样写：
 
-```
+```bash
 repo HelloWorld
 	RW+     =   zhangsan
 ```
 
 当你推送到远程仓库后，在git用户的repositories目录下就会新增一个HelloWorld.git远程仓库，张三可以通过git clone就可以将项目clone下来了。
 
-```
+```shell
 git clone git@server_ip:HelloWorld.git
 ```
 

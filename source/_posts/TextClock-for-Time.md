@@ -68,7 +68,7 @@ tags:
 
 首先就当成普通的控件在布局文件中直接使用，如：
 
-```
+```xml
 <TextClock
           android:id="@+id/timeView"
           android:layout_width="wrap_content"

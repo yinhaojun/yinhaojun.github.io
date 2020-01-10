@@ -3,11 +3,11 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: YHaojun
+title: 千里之行，始于足下
 subtitle:
 description: 静思笃行，持中秉正
 keywords:
-author: YHaojun
+author: Victor.yin
 language:
 timezone:
     
@@ -73,7 +73,7 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: landscape
+theme: next
 
 # Extensions
 #plugins:
