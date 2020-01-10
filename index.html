@@ -252,6 +252,260 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.yhaojun.site/2020/01/09/referencing-data/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Victor.yin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="千里之行，始于足下">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/01/09/referencing-data/" itemprop="url">使用 Room 引用复杂数据</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-01-09T15:21:51+08:00">
+                2020-01-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>Room 提供了在基元类型和盒装类型之间进行转换的功能，但不允许实体之间进行对象引用。本文档介绍了如何使用类型转换器，以及 Room 为何不支持对象引用。</p>
+<h2 id="使用类型转换器"><a href="#使用类型转换器" class="headerlink" title="使用类型转换器"></a>使用类型转换器</h2><p>有时，您的应用需要使用自定义数据类型，其中包含您想要存储到单个数据库列中的值。要为自定义类型添加此类支持，您需要提供一个<code>TypeConverter</code>，它可以在自定义类与 Room 可以保留的已知类型之间来回转换。</p>
+<p>例如，如果我们想保留 <code>Date</code> 的实例，则可以编写以下 <code>TypeConverter</code>，将等效的 Unix 时间戳存储在数据库中：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Converters</span> </span>&#123;</span><br><span class="line">    <span class="meta">@TypeConverter</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Date <span class="title">fromTimestamp</span><span class="params">(Long value)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> value == <span class="keyword">null</span> ? <span class="keyword">null</span> : <span class="keyword">new</span> Date(value);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@TypeConverter</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Long <span class="title">dateToTimestamp</span><span class="params">(Date date)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> date == <span class="keyword">null</span> ? <span class="keyword">null</span> : date.getTime();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/01/09/referencing-data/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.yhaojun.site/2020/01/09/migrating-db-versions/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Victor.yin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="千里之行，始于足下">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/01/09/migrating-db-versions/" itemprop="url">迁移 Room 数据库</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-01-09T14:14:11+08:00">
+                2020-01-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>当您在应用中添加和更改功能时，需要修改实体类以反映这些更改。当用户更新到您应用的最新版本时，您不想让他们丢失所有现有数据，尤其是在您无法从远程服务器恢复数据时。</p>
+<p>借助 <code>Room</code>，您可以编写 <code>Migration</code>类，以这种方式保留用户数据。每个 <code>Migration</code>类均指定一个 startVersion<code>和</code>endVersion<code>。在运行时，</code>Room<code>会运行每个</code>Migration<code>类的</code>migrate()`方法，以按照正确的顺序将数据库迁移到更高版本。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">final</span> Migration MIGRATION_1_2 = <span class="keyword">new</span> Migration(<span class="number">1</span>, <span class="number">2</span>) &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">migrate</span><span class="params">(SupportSQLiteDatabase database)</span> </span>&#123;</span><br><span class="line">        database.execSQL(<span class="string">"CREATE TABLE `Fruit` (`id` INTEGER, "</span></span><br><span class="line">                + <span class="string">"`name` TEXT, PRIMARY KEY(`id`))"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">final</span> Migration MIGRATION_2_3 = <span class="keyword">new</span> Migration(<span class="number">2</span>, <span class="number">3</span>) &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">migrate</span><span class="params">(SupportSQLiteDatabase database)</span> </span>&#123;</span><br><span class="line">        database.execSQL(<span class="string">"ALTER TABLE Book "</span></span><br><span class="line">                + <span class="string">" ADD COLUMN pub_year INTEGER"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">Room.databaseBuilder(getApplicationContext(), MyDb.class, <span class="string">"database-name"</span>)</span><br><span class="line">        .addMigrations(MIGRATION_1_2, MIGRATION_2_3).build();</span><br></pre></td></tr></table></figure>
+<p>迁移过程完成后，Room 会验证架构以确保迁移正确进行。如果 Room 发现问题，则会抛出包含不匹配信息的异常。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/01/09/migrating-db-versions/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.yhaojun.site/2020/01/07/Room-prepopulate/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1230,260 +1484,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.yhaojun.site/2018/08/04/TextClock-for-Time/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Victor.yin">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="千里之行，始于足下">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/04/TextClock-for-Time/" itemprop="url">时间控件TextClock</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-04T19:37:46+08:00">
-                2018-08-04
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>各位大佬好，小弟最近做了一款安卓机顶盒的主页。因为是针对电视的主页，一般来说需要显示系统时间。糟糕的是，我在Android Studio里面我没有找到对应显示时间的控件，参考以前同事写的代码后采用了以下解决方案：<strong>利用定时器，每秒取一次系统时间，然后格式化并显示在TextView上。</strong>显然这种方式是不行的，那我们该怎么做呢？</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/08/04/TextClock-for-Time/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.yhaojun.site/2018/07/28/Build-personal-blog-by-hexo/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Victor.yin">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="千里之行，始于足下">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/28/Build-personal-blog-by-hexo/" itemprop="url">Hexo搭建个人博客</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-28T15:47:01+08:00">
-                2018-07-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>博客已经不是什么很新鲜的玩意儿了，尤其是当微信公众号、简书等优秀的写作平台的兴起，个人博客的价值已经越来越式微了。但是作为一名软件研发行业的小学生，拥有个人博客记录一些日常所学、平日所感还是感觉不错的，一直以来我都是利用Hexo生成博客并托管到Github等开源平台。这期间还挺折腾的，主要表现在：</p>
-<ol>
-<li>博客的迁移，从github迁移到gitlab，然后是coding，然后又迁移到github；</li>
-<li>写过几篇文章，但是都感觉质量不高，而且很难坚持；</li>
-<li>托管到第三方网站，依赖别人必将受限于人。</li>
-</ol>
-<p>因此这次痛下决心，自己购买了个阿里云服务器和域名，将hexo搭建的博客放在自己的服务器上，然后利用gitolite进行管理，nginx实现展示，下面分享给大家。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/07/28/Build-personal-blog-by-hexo/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1534,7 +1534,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
